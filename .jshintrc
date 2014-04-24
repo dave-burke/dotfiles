@@ -1,0 +1,25 @@
+{
+	"camelcase": true,
+	"curly": true,
+	"eqeqeq": true,
+	"forin": true,
+	"immed": true,
+	"indent": 8,
+	"latedef": true,
+	"newcap": true,
+	"noarg": true,
+	"quotmark": "double",
+	"undef": true,
+	"unused": "vars",
+	"strict": true,
+	"trailing": true,
+	"devel": true,
+	"browser": true,
+	"dojo": true,
+	"jquery": true,
+	"node": true,
+	"yui": true
+	"globals": {
+		"enyo" : false
+	}
+}
