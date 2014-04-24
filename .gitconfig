@@ -1,0 +1,22 @@
+[user]
+	name = Dave Burke
+	email = dburke84@gmail.com
+[color]
+	ui = auto
+[merge]
+	tool = vimdiff
+[push]
+	default = matching
+[rerere]
+	enabled = true
+[alias]
+	#lg = log --graph --all --oneline --decorate
+	lg = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ar %Cblueby %an (%ae)'
+	patch = format-patch --patience --stdout
+	cm = commit -m
+	cam = commit -a -m
+	nb = checkout -b
+	d = diff
+	ds = diff --staged
+	rbu = git rebase -i @{upstream}
+	undo = git reset --hard HEAD@{1}
