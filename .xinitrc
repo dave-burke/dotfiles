@@ -1,4 +1,3 @@
-xmodmap /home/dave/.Xmodmaprc
+xmodmap ~/.Xmodmaprc
 xrdb -merge ~/.Xresources
-#exec startfluxbox
 exec spectrwm
