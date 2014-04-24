@@ -7,6 +7,8 @@
 	tool = vimdiff
 [push]
 	default = matching
+[pull]
+	rebase = true
 [rerere]
 	enabled = true
 [alias]
