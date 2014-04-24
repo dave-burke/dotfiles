@@ -20,5 +20,5 @@
 	nb = checkout -b
 	d = diff
 	ds = diff --staged
-	rbu = git rebase -i @{upstream}
-	undo = git reset --hard HEAD@{1}
+	rbu = rebase -i @{upstream}
+	undo = reset --hard HEAD@{1}
