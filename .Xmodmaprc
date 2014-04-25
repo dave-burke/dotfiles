@@ -1,4 +1,3 @@
-#Switch capslock and backspace
 remove Lock = Caps_Lock
 keysym BackSpace = Caps_Lock
 keysym Caps_Lock = BackSpace
