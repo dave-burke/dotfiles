@@ -3,6 +3,8 @@
 	email = dburke84@gmail.com
 [color]
 	ui = auto
+[core]
+	editor = vim
 [merge]
 	tool = vimdiff
 [push]
