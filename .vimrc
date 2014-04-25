@@ -1,13 +1,9 @@
 " Dave's vimrc file
 " Based on a vimrc file that came with vim or something.
 "
-" Last change:	2012 June 22
-"
 " To use it, copy it to
 "     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
 
 "Set location for backup/swap/undo dirs
 let $VIMFILES=expand("$HOME/.vim")
