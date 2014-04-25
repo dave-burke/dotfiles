@@ -34,6 +34,7 @@ command -v truecrypt || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
 alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
+alias tree='tree --charset=ascii'
  
 #for zsh
 alias reloadzsh="source ~/.zshrc && echo zshrc reloaded"
