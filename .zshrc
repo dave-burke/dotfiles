@@ -11,6 +11,7 @@ setopt HIST_NO_STORE
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt INC_APPEND_HISTORY
+bindkey -v
 [[ -n "${key[PageUp]}" ]] && bindkey "${key[PageUp]}" history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]] && bindkey "${key[PageDown]}" history-beginning-search-forward
  
@@ -29,6 +30,7 @@ setopt noclobber
 export GREP_OPTIONS="--exclude-dir=.git"
 
 #ALIASES
+command -v truecrypt || alias truecrypt=realcrypt
 alias ls='ls --color=tty'
 alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
