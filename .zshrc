@@ -30,7 +30,7 @@ setopt noclobber
 export GREP_OPTIONS="--exclude-dir=.git"
 
 #ALIASES
-command -v truecrypt || alias truecrypt=realcrypt
+command -v truecrypt > /dev/null || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
 alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
