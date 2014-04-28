@@ -29,12 +29,18 @@ setopt noclobber
 #Don't grep .git dirs
 export GREP_OPTIONS="--exclude-dir=.git"
 
-#ALIASES
+#Functions
+function findvim {
+	find -iname "$1" -exec vim -p {} +
+}
+
+#Aliases
 command -v truecrypt > /dev/null || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
 alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
 alias tree='tree --charset=ascii'
+alias wgetp='wget -EHkKp'
  
 #for zsh
 alias reloadzsh="source ~/.zshrc && echo zshrc reloaded"
@@ -59,5 +65,12 @@ alias cd..6="cd ../../../../../.."
 alias cd..7="cd ../../../../../../.."
 alias cd..8="cd ../../../../../../../.."
 alias cd..9="cd ../../../../../../../../.."
+
+if [ ! -z "${MY_PROXY}" ]; then
+	export http_proxy=http://$MY_PROXY
+	export HTTP_PROXY=$http_proxy
+	export https_proxy=https://$MY_PROXY
+	export HTTPS_PROXY=$https_proxy
+fi
 
 unset MAILCHECK
