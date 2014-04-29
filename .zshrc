@@ -34,9 +34,35 @@ function findvim {
 	find -iname "$1" -exec vim -p {} +
 }
 
+function grepvim {
+	# Only works for filenames without spaces. Boo!
+	vim -p $(grep -rl $@)
+}
+
+function findgrep {
+	if [ $# -lt 2 ]; then
+		echo Wrong number of arguments.
+		return
+	fi
+	local findPattern=${1}
+	local grepPattern=${2}
+	shift 2
+	if [ $# -gt 0 ]; then
+		grepArgs=$@
+	else
+		grepArgs="-i"
+	fi
+
+	find -type f -iname "${findPattern}" -print0 | xargs -0 grep ${grepArgs} "${grepPattern}"
+}
+
 #Aliases
 command -v truecrypt > /dev/null || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -lh'
+alias lah='ls -lah'
 alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
 alias tree='tree --charset=ascii'
