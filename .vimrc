@@ -136,7 +136,6 @@ set formatoptions=l
 set directory=$VIMFILES/swap/
 set gfn=Source_Code_Pro:h9:cANSI
 set encoding=utf8
-set number
 set so=14
 set ssop-=options " do not store global and local values in a session
 colorscheme slate
@@ -144,6 +143,12 @@ if has("undofile")
 	set undofile
 	set undodir=$VIMFILES/undo/
 endif
+
+" Use regular numbers in insert-mode and relative numbers in normal mode.
+set number
+autocmd InsertEnter * :set relativenumber!
+autocmd InsertLeave * :set relativenumber
+set relativenumber
 
 if !exists(":Txml")
 	command Txml set ft=xml | execute "%!tidy -q -i -xml -wrap 150"
