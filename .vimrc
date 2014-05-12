@@ -8,7 +8,7 @@
 "Set location for backup/swap/undo dirs
 let $VIMFILES=expand("$HOME/.vim")
 if has('win32') || has('win64')
-	let $VIMFILES=expand("$HOME/vimfiles")
+	let $VIMFILES=expand("$SystemDrive//Users/$USERNAME/vimfiles")
 endif
 
 " When started as "evim", evim.vim will already have done these settings.
