@@ -56,6 +56,15 @@ function findgrep {
 	find -type f -iname "${findPattern}" -print0 | xargs -0 grep ${grepArgs} "${grepPattern}"
 }
 
+function odsgrep {
+	for f in *.ods; do
+		unzip -p $f content.xml | xmllint --format - | grep $@
+		if [[ $? -eq 0 ]]; then
+			echo $f
+		fi
+	done
+}
+
 #Aliases
 command -v truecrypt > /dev/null || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
