@@ -102,11 +102,6 @@ alias cd..7="cd ../../../../../../.."
 alias cd..8="cd ../../../../../../../.."
 alias cd..9="cd ../../../../../../../../.."
 
-if [ ! -z "${MY_PROXY}" ]; then
-	export http_proxy=http://$MY_PROXY
-	export HTTP_PROXY=$http_proxy
-	export https_proxy=https://$MY_PROXY
-	export HTTPS_PROXY=$https_proxy
+if [[ -f ~/.zshrc-local ]]; then
+	source ~/.zshrc-local
 fi
-
-unset MAILCHECK
