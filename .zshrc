@@ -74,7 +74,6 @@ alias ll='ls -lh'
 alias lah='ls -lah'
 alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
-alias tree='tree --charset=ascii'
 alias treed='tree -d'
 alias wgetp='wget --page-requisites --adjust-extension --span-hosts --convert-links --backup-converted'
  
