@@ -88,9 +88,13 @@ alias sa='screen -r'
 alias sl='screen -ls'
 
 #for tmux
-alias tn='tmux new -s'
-alias ta='tmux attach -t'
 alias tl='tmux ls'
+function t {
+	tmux attach -t $1
+	if [ $? -ne 0 ]; then
+		tmux new -s $1
+	fi
+}
 
 alias cd..="cd .."
 alias cd..2="cd ../.."
