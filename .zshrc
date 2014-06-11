@@ -87,11 +87,14 @@ alias sa='screen -r'
 alias sl='screen -ls'
 
 #for tmux
-alias tl='tmux ls'
 function t {
-	tmux attach -t $1
-	if [ $? -ne 0 ]; then
-		tmux new -s $1
+	if [[ -z $1 ]]; then
+		tmux ls
+	else
+		tmux attach -t $1
+		if [[ $? -ne 0 ]]; then
+			tmux new -s $1
+		fi
 	fi
 }
 
