@@ -26,6 +26,11 @@ alias dh='dirs -v'
 #Don't overwrite existing files with > operator. Use >! to override.
 setopt noclobber
 
+#Colors
+if [[ -f ~/.dir_colors ]]; then
+	eval `dircolors ~/.dir_colors`
+fi
+
 #Don't grep .git dirs
 export GREP_OPTIONS="--exclude-dir=.git"
 
@@ -87,6 +92,7 @@ alias sa='screen -r'
 alias sl='screen -ls'
 
 #for tmux
+alias tmux='tmux -2' #Use 256 colors
 function t {
 	if [[ -z $1 ]]; then
 		tmux ls

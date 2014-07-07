@@ -29,6 +29,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
 Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'freitass/todo.txt-vim'
 
@@ -39,6 +40,11 @@ filetype plugin indent on
 " Syntastic config
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_java_checkers=['checkstyle']
+
+syntax enable
+set hlsearch
+set background=dark
+colorscheme solarized
 
 " set tab width
 set ts=8
@@ -67,13 +73,6 @@ inoremap <C-U> <C-G>u<C-U>
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
 	set mouse=a
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -160,7 +159,6 @@ set directory=$VIMFILES/swap/
 set gfn=Source_Code_Pro:h9:cANSI
 set so=14
 set ssop-=options " do not store global and local values in a session
-colorscheme slate
 if has("undofile")
 	set undofile
 	set undodir=$VIMFILES/undo/
