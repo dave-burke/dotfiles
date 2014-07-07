@@ -20,6 +20,24 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Plugin management
+" Vundle setup
+filetype off
+set rtp+=$VIMFILES/bundle/Vundle.vim
+call vundle#begin(expand("$VIMFILES//bundle"))
+Plugin 'gmarik/Vundle.vim'
+
+" My Bundles
+Plugin 'scrooloose/syntastic'
+
+" Finish Vundle setup
+call vundle#end()
+filetype plugin indent on
+
+" Syntastic config
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_java_checkers=['checkstyle']
+
 " set tab width
 set ts=8
 set shiftwidth=8 "same as tabwidth
@@ -58,12 +76,6 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
-	" Enable file type detection.
-	" Use the default filetype settings, so that mail gets 'tw' set to 72,
-	" 'cindent' is on in C files, etc.
-	" Also load indent files, to automatically do language-dependent indenting.
-	filetype plugin indent on
 
 	" Put these in an autocmd group, so that we can delete them easily.
 	augroup vimrcEx
@@ -189,9 +201,3 @@ if !exists("my_auto_commands_loaded")
 		autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
 	augroup END
 endif
-
-silent! execute pathogen#infect()
-
-" Syntastic
-let g:syntastic_javascript_checkers=['jsl']
-let g:syntastic_java_checkers=['checkstyle']
