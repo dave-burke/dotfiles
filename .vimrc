@@ -29,6 +29,8 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'freitass/todo.txt-vim'
 
 " Finish Vundle setup
 call vundle#end()
