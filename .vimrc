@@ -139,6 +139,15 @@ if has("unix")
 else
 	set clipboard=unnamed "use windows clipboard
 endif
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
 set isk+=_,$,@,%,#,- "none of these should be word separators
 set nowrap "don't wrap lines by default
 set lbr "wrap on words
@@ -149,7 +158,6 @@ set guioptions=egmrLtTb
 set formatoptions=l
 set directory=$VIMFILES/swap/
 set gfn=Source_Code_Pro:h9:cANSI
-set encoding=utf8
 set so=14
 set ssop-=options " do not store global and local values in a session
 colorscheme slate
