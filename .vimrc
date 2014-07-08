@@ -28,23 +28,24 @@ call vundle#begin(expand("$VIMFILES//bundle"))
 Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
-Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-fugitive'
 Plugin 'freitass/todo.txt-vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
 
 " Finish Vundle setup
 call vundle#end()
 filetype plugin indent on
 
-" Syntastic config
-let g:syntastic_javascript_checkers=['jshint']
-let g:syntastic_java_checkers=['checkstyle']
-
+" Solarized config
 syntax enable
 set hlsearch
 set background=dark
 colorscheme solarized
+
+" Syntastic config
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_java_checkers=['checkstyle']
 
 " set tab width
 set ts=8
