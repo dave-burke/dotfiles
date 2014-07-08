@@ -31,6 +31,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 
@@ -43,6 +44,13 @@ syntax enable
 set hlsearch
 set background=dark
 colorscheme solarized
+
+" NERDTree config
+" Open NERDTree when vim starts with no file specified
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Open NERDTree with Ctrl-n
+map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic config
 let g:syntastic_javascript_checkers=['jshint']
