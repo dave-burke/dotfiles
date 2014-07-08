@@ -4,6 +4,14 @@ URxvt.tabbed.tabbar-fg: 2
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
 URxvt.tabbed.tab-bg: 0
+URxvt.font: xft:Source Code Pro:size=9
+
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    false
+Xft.hinstyle:   hintfull
+Xft.lcdfilter:  lcdlight
+URxvt*xftAntialias: false
 
 ! Solarized color scheme for the X Window System
 !
