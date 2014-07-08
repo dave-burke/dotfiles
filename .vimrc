@@ -30,6 +30,7 @@ Plugin 'gmarik/Vundle.vim'
 " My Bundles
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'freitass/todo.txt-vim'
+Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 
