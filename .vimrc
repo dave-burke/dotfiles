@@ -90,12 +90,19 @@ set shiftwidth=8 "same as tabwidth
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" backup/undo/swap
 if has("vms")
 	set nobackup		" do not keep a backup file, use versions instead
 else
 	set backupdir=$VIMFILES/backup/
 	set backup		" keep a backup file
 endif
+if has("undofile")
+	set undofile
+	set undodir=$VIMFILES/undo/
+endif
+set directory=$VIMFILES/swap/
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -150,8 +157,6 @@ if has("autocmd")
 	autocmd FileType xml cnoremap tidy %!tidy -q -i -xml
 	autocmd FileType html cnoremap tidy %!tidy -q -i -html
 
-	set autoindent		" always set autoindenting on
-
 	"Keep windows equal width when resizing window in diff mode
 	if &diff
 		autocmd VimResized * exec "normal \<C-w>="
@@ -169,7 +174,6 @@ if !exists(":DiffOrig")
 			\ | wincmd p | diffthis
 endif
 
-" My config stuff
 if has("unix")
 	"set clipboard=unnamedplus
 else
@@ -192,14 +196,9 @@ set foldmethod=indent "make folding indent sensitive
 set foldlevel=100 "don't autofold anything
 set guioptions=egmrLtTb
 set formatoptions=l
-set directory=$VIMFILES/swap/
 set gfn=Source_Code_Pro:h9:cANSI
 set so=14
 set ssop-=options " do not store global and local values in a session
-if has("undofile")
-	set undofile
-	set undodir=$VIMFILES/undo/
-endif
 
 " Use regular numbers in insert-mode and relative numbers in normal mode.
 set number
