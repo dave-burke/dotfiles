@@ -33,6 +33,7 @@ Plugin 'AutoTag'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
+" Doesn't work in mintty: Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
@@ -107,6 +108,17 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+
+" Fix mintty cursor in cygwin (shouldn't hurt in any other xterm)
+if has('unix')
+	" \e = escape
+	" ESC+[ 1 SP sets cursor to block
+	" ESC+[ 5 SP sets cursor to line
+	let &t_ti.="\e[1 q" " t_ti = put terminal in 'termcap' mode (start vim)
+	let &t_SI.="\e[5 q" " t_SI = start insert mode
+	let &t_EI.="\e[1 q" " t_EI = end insert mode
+	let &t_te.="\e[5 q" " t_te = out of 'termcap' mode (close vim)
+endif
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
