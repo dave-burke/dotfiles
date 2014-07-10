@@ -32,6 +32,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 if has('lua') | Plugin 'Shougo/neocomplete.vim' | endif
@@ -46,6 +47,10 @@ syntax enable
 set hlsearch
 set background=dark
 colorscheme solarized
+
+" Undotree config
+" CTRL-U is 'scroll up' by default and I never use that.
+nnoremap <C-u> :UndotreeToggle<cr>
 
 " NERDTree config
 " Open NERDTree when vim starts with no file specified
