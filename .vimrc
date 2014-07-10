@@ -30,6 +30,7 @@ Plugin 'gmarik/Vundle.vim'
 " My Bundles
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'AutoTag'
+Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'kien/ctrlp.vim'
@@ -48,6 +49,10 @@ syntax enable
 set hlsearch
 set background=dark
 colorscheme solarized
+
+" Airline config
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
 
 " Undotree config
 " CTRL-U is 'scroll up' by default and I never use that.
