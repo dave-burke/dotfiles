@@ -34,6 +34,7 @@ Plugin 'freitass/todo.txt-vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+if has('lua') | Plugin 'Shougo/neocomplete.vim' | endif
 Plugin 'tpope/vim-fugitive'
 
 " Finish Vundle setup
@@ -56,6 +57,21 @@ map <C-n> :NERDTreeToggle<CR>
 " Syntastic config
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_java_checkers=['checkstyle']
+
+" Neocomplete config
+if has('lua')
+	let g:neocomplete#enable_at_startup = 1
+	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+	autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+	autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	set tags=./tags;
+else
+	" This prevents the annoying pop-up when neocomplete can't load
+	let g:loaded_neocomplete = 1
+endif
 
 " set tab width
 set ts=8
@@ -118,7 +134,6 @@ if has("autocmd")
 	" My autocmd config
 	" Set foldlevel 1 for source files
 	autocmd FileType java setlocal foldlevel=1
-	autocmd FileType java setlocal omnifunc=javacomplete#Complete
 	autocmd FileType jsp setlocal foldlevel=1
 	autocmd FileType js setlocal foldlevel=1
 	autocmd FileType xml cnoremap tidy %!tidy -q -i -xml
