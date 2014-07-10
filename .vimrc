@@ -29,6 +29,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'AutoTag'
 Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'kien/ctrlp.vim'
