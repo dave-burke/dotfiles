@@ -46,6 +46,7 @@ call vundle#end()
 filetype plugin indent on
 
 " Solarized config
+set t_Co=256
 syntax enable
 set hlsearch
 set background=dark
