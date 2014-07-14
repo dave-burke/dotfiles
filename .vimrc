@@ -33,6 +33,7 @@ Plugin 'AutoTag'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
+if !has('gui') | Plugin 'jamessan/vim-gnupg' | endif
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
@@ -225,21 +226,6 @@ if !exists(":Txml")
 endif
 if !exists(":Thtml")
 	command Thtml set ft=html | execute "%!tidy -q -i -html -wrap 150"
-endif
-
-" GPG encryption/decryption via custom commands.
-" This doesn't bother with things like preventing anything
-" from getting written to .viminfo. It just does the encryption
-" upon request.
-function! s:MyGpg(recipient)
-	let recipient = a:recipient
-	execute "%!gpg -aes -r ".recipient
-endfunction
-if !exists(":Encrypt")
-	command! -nargs=1 Encrypt call s:MyGpg(<f-args>)
-endif
-if !exists(":Decrypt")
-	command Decrypt execute "%!gpg -d"
 endif
 
 " Protect large files from sourcing and other overhead.
