@@ -65,6 +65,10 @@ if !has('gui') && has('unix') && $OS == "Windows_NT"
 	let &t_te.="\e[5 q" " t_te = out of 'termcap' mode (close vim)
 endif
 
+" ctrlp config
+let g:ctrlp_root_markers = ['.acignore']
+let g:ctrlp_custom_ignore = '\v\.(class|exe|dll|zip)$'
+
 " Undotree config
 " CTRL-U is 'scroll up' by default and I never use that.
 nnoremap <C-u> :UndotreeToggle<cr>
