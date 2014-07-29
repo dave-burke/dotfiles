@@ -16,10 +16,6 @@ if v:progname =~? "evim"
 	finish
 endif
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " Plugin management
 " Vundle setup
 filetype off
