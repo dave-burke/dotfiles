@@ -32,6 +32,7 @@ Plugin 'freitass/todo.txt-vim'
 if !has('gui') | Plugin 'jamessan/vim-gnupg' | endif
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -68,6 +69,9 @@ endif
 " ctrlp config
 let g:ctrlp_root_markers = ['.acignore']
 let g:ctrlp_custom_ignore = '\v\.(class|exe|dll|zip)$'
+
+" Tagbar config
+nmap <C-m> :TagbarToggle<CR>
 
 " Undotree config
 " CTRL-U is 'scroll up' by default and I never use that.
