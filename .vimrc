@@ -134,11 +134,13 @@ set smartcase		" unless the search pattern contains a capital letter
 map Q gq
 
 " Key mappings
-nnoremap <C-J> <C-W><C-J> " ctrl-j moves down a split
-nnoremap <C-K> <C-W><C-K> " ctrl-k moves up a split
-nnoremap <C-H> <C-W><C-H> " ctrl-h moves left a split
-nnoremap <C-L> <C-W><C-L> " ctrl-l moves right a split
-inoremap <C-U> <C-G>u<C-U> " CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo, so that you can undo CTRL-U after inserting a line break.
+" Use ctrl-[jkhl] to move around splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
+" CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo, so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
