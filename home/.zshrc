@@ -31,6 +31,9 @@ if [[ -f ~/.dir_colors ]]; then
 	eval `dircolors ~/.dir_colors`
 fi
 
+#Midnight Commander skin
+export MC_SKIN="$HOME/.config/mc/lib/mc-solarized-skin/solarized.ini"
+
 #Don't grep .git dirs
 export GREP_OPTIONS="--exclude-dir=.git"
 
