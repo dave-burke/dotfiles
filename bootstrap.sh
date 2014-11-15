@@ -29,7 +29,7 @@ function clone_repo() {
 }
 
 function link_dotfile() {
-	local target="$(realpath ${1})"
+	local target="$(cd $(dirname ${1}); pwd)/$(basename ${1})"
 	local base_name="$(basename ${1})"
 	local link_name="${HOME}/${base_name}"
 
