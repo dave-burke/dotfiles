@@ -140,6 +140,32 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
 
+" Create sensible split shortcuts
+" Note that 'frame' is the OS 'window' and 'window' is the vim file pane.
+nmap <leader>swh :topleft vnew<CR> "Split frame left
+cabbrev swh topleft vsplit
+
+nmap <leader>swj :botright new<CR> "Split frame down
+cabbrev swj botright split
+
+nmap <leader>swk :topleft new<CR> "Split frame up
+cabbrev swk topleft split
+
+nmap <leader>swl :botright vnew<CR> "Split frame right
+cabbrev swl botright vsplit
+
+nmap <leader>sh :leftabove vnew<CR> "Split window left
+cabbrev sh leftabove vsplit
+
+nmap <leader>sj :rightbelow new<CR> "Split window down
+cabbrev sj rightbelow split
+
+nmap <leader>sk :leftabove new<CR> "Split window up
+cabbrev sk leftabove split
+
+nmap <leader>sl :rightbelow vnew<CR> "Split window right
+cabbrev sl rightbelow vsplit
+
 " CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo, so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
