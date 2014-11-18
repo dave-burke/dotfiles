@@ -44,7 +44,7 @@ function findvim {
 
 function grepvim {
 	# Only works for filenames without spaces. Boo!
-	vim -p $(grep -rl $@)
+	vim -p $(grep -rliI $@)
 }
 
 function findgrep {
