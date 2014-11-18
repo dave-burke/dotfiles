@@ -98,8 +98,8 @@ alias sn='screen -S'
 alias sa='screen -r'
 alias sl='screen -ls'
 
-function user_mount {
-	sudo mount -v -o umask=0022,uid=$(id -u),gid=$(id -g) "${1}" "${2}"
+function mount_fat {
+	sudo mount -v -t vfat -o umask=0022,uid=$(id -u),gid=$(id -g) "${1}" "${2}"
 }
 
 #for tmux
