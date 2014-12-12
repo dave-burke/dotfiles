@@ -73,6 +73,47 @@ function odsgrep {
 	done
 }
 
+function cpv {
+	command -v pv > /dev/null
+	if [[ $? -ne 0 ]]; then
+		rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress -- $@
+	else
+		if [[ $# == 0 ]]; then
+			echo "missing file operand"
+			return
+		elif [[ $# == 1 ]]; then
+			echo "missing destination file operand after '${1}'"
+			return
+		fi
+
+		destination="${@: -1}"
+		if [[ ! -e "${destination}" && $# > 2 ]]; then
+			echo "target '${destination}' is not a directory"
+			return
+		fi
+
+		if [[ -e "${destination}" && ! -d "${destination}" ]]; then
+			echo "file exists: '${destination}'"
+			return
+		fi
+
+		for a in "${@}"; do
+			if [[ "${a}" != "${destination}" ]]; then
+				if [[ -f "${a}" ]]; then
+					if [[ -d "${destination}" ]]; then
+						target=$(basename "${a}")
+						pv -N "${a}" "${a}" > "${destination}/${target}"
+					else
+						pv -N "${a}" "${a}" > "${destination}"
+					fi
+				else
+					echo "${a} is not a file."
+				fi
+			fi
+		done
+	fi
+}
+
 #Aliases
 command -v truecrypt > /dev/null || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
@@ -84,7 +125,6 @@ alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
 alias treed='tree -d'
 alias wgetp='wget --page-requisites --adjust-extension --span-hosts --convert-links --backup-converted'
-alias cpv='rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress --'
 
 # GPG doesn't list keys in your keyring for some reason.
 alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
