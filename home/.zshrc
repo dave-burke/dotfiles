@@ -70,6 +70,7 @@ function odsgrep {
 	done
 }
 
+alias cprv='rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress --'
 function cpv {
 	command -v pv > /dev/null
 	if [[ $? -ne 0 ]]; then
@@ -83,7 +84,7 @@ function cpv {
 			return
 		fi
 
-		destination="${@: -1}"
+		local destination="${@: -1}"
 		if [[ ! -e "${destination}" && $# > 2 ]]; then
 			echo "target '${destination}' is not a directory"
 			return
@@ -94,17 +95,22 @@ function cpv {
 			return
 		fi
 
+		local a
 		for a in "${@}"; do
 			if [[ "${a}" != "${destination}" ]]; then
-				if [[ -f "${a}" ]]; then
+				if [[ -d "${a}" ]]; then
+					#Fall back on rsync. Someday I'll sort this out.
+					rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress -- "${a}" "${destination}"
+				elif [[ -f "${a}" ]]; then
 					if [[ -d "${destination}" ]]; then
-						target=$(basename "${a}")
-						pv -N "${a}" "${a}" > "${destination}/${target}"
+						local target="${destination}/$(basename "${a}")"
 					else
-						pv -N "${a}" "${a}" > "${destination}"
+						local target="${destination}"
 					fi
+					#echo "${a} -> ${target}"
+					pv -N "${a}" "${a}" > "${target}"
 				else
-					echo "${a} is not a file."
+					echo "${a} is not a normal file."
 				fi
 			fi
 		done
