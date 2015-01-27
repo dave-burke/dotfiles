@@ -109,6 +109,7 @@ function cpv {
 					fi
 					#echo "${a} -> ${target}"
 					pv -N "${a}" "${a}" > "${target}"
+					chmod --reference "${a}" "${target}"
 				else
 					echo "${a} is not a normal file."
 				fi
