@@ -34,9 +34,6 @@ fi
 #Midnight Commander skin
 export MC_SKIN="$HOME/.config/mc/lib/mc-solarized-skin/solarized.ini"
 
-#Don't grep .git dirs
-export GREP_OPTIONS="--exclude-dir=.git"
-
 #Functions
 function findvim {
 	find -iname "$1" -exec vim -p {} +
@@ -125,6 +122,7 @@ alias diff='diff -u'
 alias gitinit='git init && git add . && git commit -m Initial\ commit.'
 alias treed='tree -d'
 alias wgetp='wget --page-requisites --adjust-extension --span-hosts --convert-links --backup-converted'
+alias grep='grep --exclude-dir=.git'
 
 # GPG doesn't list keys in your keyring for some reason.
 alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
