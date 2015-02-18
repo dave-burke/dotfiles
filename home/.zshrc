@@ -126,9 +126,15 @@ function cpv {
 					else
 						local target="${destination}"
 					fi
-					#echo "${a} -> ${target}"
-					pv -N "${a}" "${a}" > "${target}"
-					chmod --reference "${a}" "${target}"
+					if [[ -e "${target}" ]]; then
+						echo "target exists: '${target}'"
+					else
+						pv -N "${a}" "${a}" > "${target}"
+						if [[ $? -eq 0 ]]; then
+							chmod --reference "${a}" "${target}"
+							chown --reference "${a}" "${target}"
+						fi
+					fi
 				else
 					echo "${a} is not a normal file."
 				fi
