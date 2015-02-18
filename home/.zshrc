@@ -44,6 +44,25 @@ function grepvim {
 	vim -p $(grep -rliI $@)
 }
 
+function swap {
+	if [[ ! -f "${1}" ]]; then
+		echo "${1} is not a file"
+		return
+	fi
+	if [[ ! -f "${2}" ]]; then
+		echo "${2} is not a file"
+		return
+	fi
+	if [[ -f "tmp" ]]; then
+		echo "tmp exists"
+		return
+	fi
+	cp "${1}" tmp
+	cp "${2}" "${1}"
+	cp tmp "${2}"
+	rm tmp
+}
+
 function findgrep {
 	if [ $# -lt 2 ]; then
 		echo Wrong number of arguments.
