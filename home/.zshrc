@@ -176,9 +176,9 @@ function mount_fat {
 alias tmux='tmux -2' #Use 256 colors
 function t {
 	if [[ -z $1 ]]; then
-		tmux ls
+		tmux ls 2> /dev/null || echo "[No sessions]"
 	else
-		tmux attach -t $1
+		tmux attach -t $1 2> /dev/null
 		if [[ $? -ne 0 ]]; then
 			tmux new -s $1
 		fi
