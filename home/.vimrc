@@ -24,6 +24,7 @@ call vundle#begin(expand("$VIMFILES//bundle"))
 Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
+Plugin 'Align'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'AutoTag'
 Plugin 'bling/vim-airline'
