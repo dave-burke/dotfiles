@@ -18,7 +18,7 @@
 	"dojo": true,
 	"jquery": true,
 	"node": true,
-	"yui": true
+	"yui": true,
 	"globals": {
 		"enyo" : false
 	}
