@@ -69,7 +69,7 @@ if !has('gui') && has('unix') && $OS == "Windows_NT"
 endif
 
 " ctrlp config
-let g:ctrlp_root_markers = ['.acignore']
+let g:ctrlp_root_markers = ['.acignore','.gitignore']
 let g:ctrlp_custom_ignore = '\v\.(class|exe|dll|zip)$'
 
 " Tagbar config
