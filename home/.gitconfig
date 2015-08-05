@@ -28,3 +28,5 @@
 	ds = diff --staged
 	rbu = rebase -i @{upstream}
 	undo = reset --hard HEAD@{1}
+	initc=!git init && git add . && git commit -m 'Initial commit'.
+
