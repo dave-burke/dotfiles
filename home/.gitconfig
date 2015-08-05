@@ -16,8 +16,7 @@
 	enabled = true
 [alias]
 	#lg = log --graph --all --oneline --decorate
-	#lg = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ar %Cblueby %an (%ae)'
-	lg = log --graph --all --date=local --pretty=format:'%C(yellow)%h %Cred%d %Creset%s %Cgreen%ad (%ar) %Cblueby %an (%ae)'
+	lg = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ar %Cblueby %an (%ae)'
 	patch = format-patch --patience --stdout
 	c = commit -v
 	ca = commit -a -v
