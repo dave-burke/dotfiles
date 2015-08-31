@@ -131,6 +131,12 @@ set incsearch		" do incremental searching
 set ignorecase		" make searches case insensitive...
 set smartcase		" unless the search pattern contains a capital letter
 
+" Set up folding
+" Set foldlevel 1 for source files
+set foldenable "turn on folding
+au BufReadPre set foldmethod=syntax
+au BufWinEnter if &fdm == 'syntax' | setlocal foldmethod=manual | endif
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -205,10 +211,6 @@ if has("autocmd")
 	au BufNewFile,BufRead *.md set filetype=markdown
 
 	" My autocmd config
-	" Set foldlevel 1 for source files
-	autocmd FileType java setlocal foldlevel=1
-	autocmd FileType jsp setlocal foldlevel=1
-	autocmd FileType js setlocal foldlevel=1
 	autocmd FileType xml cnoremap tidy %!tidy -q -i -xml
 	autocmd FileType html cnoremap tidy %!tidy -q -i -html
 
@@ -246,9 +248,6 @@ endif
 set isk+=_,$,@,%,#,- "none of these should be word separators
 set nowrap "don't wrap lines by default
 set lbr "wrap on words
-set foldenable "turn on folding
-set foldmethod=indent "make folding indent sensitive
-set foldlevel=100 "don't autofold anything
 set guioptions=egmrLtTb
 set formatoptions=l
 set gfn=Source_Code_Pro:h9:cANSI
