@@ -28,6 +28,4 @@
 	rbu = rebase -i @{upstream}
 	undo = reset --hard HEAD@{1}
 	initc=!git init && git add . && git commit -m 'Initial commit'.
-	apull = "!f() { git stash && git checkout master && accurev update && git add -A && git commit -m 'Pull from AccuRev'; git checkout dev && git rebase master && git stash pop; }; f"
-	apush = "!f() { git stash && git checkout master && git merge -m 'Push to AccuRev' --no-ff dev && accurev promote -pK -c \"${1}\" && git checkout dev && git merge master && git stash pop; }; f"
 
