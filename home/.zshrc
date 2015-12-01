@@ -177,9 +177,9 @@ function t {
 	if [[ -z $1 ]]; then
 		tmux ls 2> /dev/null || echo "[No sessions]"
 	else
-		tmux attach -t $1 2> /dev/null
+		tmux attach -t $@ 2> /dev/null
 		if [[ $? -ne 0 ]]; then
-			tmux new -s $1
+			tmux new -s $@
 		fi
 	fi
 }
