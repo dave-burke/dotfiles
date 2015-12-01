@@ -88,7 +88,7 @@ nnoremap <C-u> :UndotreeToggle<cr>
 map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic config
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['jshint','jsl']
 let g:syntastic_java_checkers=['checkstyle']
 
 " Neocomplete config
