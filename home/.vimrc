@@ -262,6 +262,7 @@ autocmd InsertLeave * :set relativenumber
 set relativenumber
 
 set cursorline "highlight current line
+set wildmenu "visual autocomplete for command menu
 
 if !exists(":Txml")
 	command Txml set ft=xml | execute "%!tidy -q -i -xml -wrap 150"
