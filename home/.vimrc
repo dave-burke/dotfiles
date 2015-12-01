@@ -261,6 +261,8 @@ autocmd InsertEnter * :set relativenumber!
 autocmd InsertLeave * :set relativenumber
 set relativenumber
 
+set cursorline "highlight current line
+
 if !exists(":Txml")
 	command Txml set ft=xml | execute "%!tidy -q -i -xml -wrap 150"
 endif
