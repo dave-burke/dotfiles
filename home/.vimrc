@@ -30,6 +30,7 @@ Plugin 'AutoTag'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
+Plugin 'gioele/vim-autoswap'
 if !has('gui') | Plugin 'jamessan/vim-gnupg' | endif
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
