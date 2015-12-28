@@ -29,3 +29,8 @@
 	undo = reset --hard HEAD@{1}
 	initc=!git init && git add . && git commit -m 'Initial commit'.
 
+[github]
+	user = dave-burke
+[credential]
+	username = dave-burke
+	helper = cache
