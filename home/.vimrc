@@ -162,17 +162,17 @@ cabbrev swk topleft split
 nmap <leader>swl :botright vnew<CR> "Split frame right
 cabbrev swl botright vsplit
 
-nmap <leader>sh :leftabove vnew<CR> "Split window left
-cabbrev sh leftabove vsplit
+nmap <leader>sbh :leftabove vnew<CR> "Split window left
+cabbrev sbh leftabove vsplit
 
-nmap <leader>sj :rightbelow new<CR> "Split window down
-cabbrev sj rightbelow split
+nmap <leader>sbj :rightbelow new<CR> "Split window down
+cabbrev sbj rightbelow split
 
-nmap <leader>sk :leftabove new<CR> "Split window up
-cabbrev sk leftabove split
+nmap <leader>sbk :leftabove new<CR> "Split window up
+cabbrev sbk leftabove split
 
-nmap <leader>sl :rightbelow vnew<CR> "Split window right
-cabbrev sl rightbelow vsplit
+nmap <leader>sbl :rightbelow vnew<CR> "Split window right
+cabbrev sbl rightbelow vsplit
 
 " CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo, so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
