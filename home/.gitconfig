@@ -18,6 +18,7 @@
 	#lg = log --graph --all --oneline --decorate
 	lg = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
 	patch = format-patch --patience --stdout
+	s = status
 	c = commit -v
 	ca = commit -a -v
 	cm = commit -m
