@@ -5,29 +5,57 @@
 	ui = auto
 [core]
 	editor = vim
+	# Do not change line endings in my workspace
 	autocrlf = input
 [merge]
 	tool = vimdiff
 [push]
+	# Default to the remote branch with the same name as the local branch
 	default = matching
 [pull]
+	# Rebase the current branch after pulling instead of merging
 	rebase = true
 [rerere]
+	# Remember how conflicts were resolved and repeat them if seen again.
 	enabled = true
 [alias]
-	#lg = log --graph --all --oneline --decorate
+	# Display a pretty log
 	lg = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
+
+	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
+
+	# Shorthand for status
 	s = status
+
+	# -v = "verbose". shows the diff in the commit message prompt.
 	c = commit -v
+
+	# "Commit All" to automatically stage all changes (only modified files, not new files)
 	ca = commit -a -v
+
+	# "Commit (with) Message". Usage: git cm "My commit message"
 	cm = commit -m
+
+	# "Commit All (with) Message". Combines the previous two.
 	cam = commit -a -m
+
+	# "New Branch" to create a new branch and immediately switch to it.
 	nb = checkout -b
+
+	# Shorthand for diff. Shows what has changed, but is *not* staged for commit.
 	d = diff
+
+	# "Diff Staged" to show what is about to be committed.
 	ds = diff --staged
+
+	# "ReBase Upstream" to clean up history before pushing to a remote.
 	rbu = rebase -i @{upstream}
+
+	# Reset to wherever HEAD was prior to the last command, to recover from a mistake.
 	undo = reset --hard HEAD@{1}
+
+	# Initialize a new repository and commit all existing files.
 	initc=!git init && git add . && git commit -m 'Initial commit'.
 
 [github]
