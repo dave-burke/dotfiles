@@ -20,7 +20,13 @@
 	enabled = true
 [alias]
 	# Display a pretty log
-	lg = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
+	lga = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
+
+	# Show only logs back to master
+	lg = !git lga master^..HEAD
+
+	# Show only logs back to upstream branch
+	lgu = !git lga @{upstream}^..HEAD
 
 	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
