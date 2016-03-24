@@ -15,6 +15,7 @@
 	"trailing": true,
 	"devel": true,
 	"browser": true,
+	"esversion": 6,
 	"dojo": true,
 	"jquery": true,
 	"node": true,
