@@ -20,19 +20,22 @@
 	enabled = true
 [alias]
 	# Display a pretty log
-	lga = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
-
-	# Show only logs back to master
-	lg = !git lga master^..HEAD
+	l = log --graph --all --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
 
 	# Show only logs back to upstream branch
-	lgu = !git lga @{upstream}^..HEAD
+	lm = !git l master..HEAD
+
+	# Show only logs back to upstream branch
+	lu = !git l @{upstream}..HEAD
+
+	# "Overview" -- Show recent logs and workspace status
+	o = !(git l | head -n 30) && git status
+
+	# Shortcut for 'status'
+	s = status
 
 	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
-
-	# Shorthand for status
-	s = status
 
 	# -v = "verbose". shows the diff in the commit message prompt.
 	c = commit -v
@@ -52,6 +55,12 @@
 	# "New Branch" to create a new branch and immediately switch to it.
 	nb = checkout -b
 
+	# "Join Branch" to merge without fast-forward
+	jb = merge --no-ff
+
+	# "Join Branch (with) Message" to merge without fast-forward and specify the message
+	jbm = merge --no-ff -m
+
 	# Shorthand for diff. Shows what has changed, but is *not* staged for commit.
 	d = diff
 
@@ -60,13 +69,15 @@
 
 	# "ReBase Upstream" to clean up history before pushing to a remote.
 	rbu = rebase -i @{upstream}
+	#
+	# "ReBase master" to clean up history before merging into master.
+	rbm = rebase -i master
 
 	# Reset to wherever HEAD was prior to the last command, to recover from a mistake.
 	back = reset --hard HEAD@{1}
 
 	# Initialize a new repository and commit all existing files.
-	initc=!git init && git add . && git commit -m 'Initial commit'.
-
+	initc = !git init && git add -A . && git commit -m 'Initial commit'.
 [github]
 	user = dave-burke
 [credential]
