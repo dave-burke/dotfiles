@@ -25,6 +25,7 @@ function zkbd_file() {
 keyfile=$(zkbd_file)
 ret=$?
 if [[ ${ret} -ne 0 ]]; then
+    echo "Could not find zkbd file for '${TERM}-${VENDOR}-${OSTYPE}' or '${TERM}-${DISPLAY}'" 
     zkbd
     keyfile=$(zkbd_file)
     ret=$?
