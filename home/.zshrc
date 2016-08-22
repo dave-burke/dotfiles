@@ -73,6 +73,12 @@ function addPath {
 
 addPath "${HOME}/bin"
 
+if [ -z "${JAVA_HOME}" ]; then
+	if [ -s "/usr/lib/jvm/default" -a -z "${JAVA_HOME}" ] ; then
+		export JAVA_HOME="/usr/lib/jvm/default"
+	fi
+fi
+
 #Functions
 function findvim {
 	find -iname "$1" -exec vim -p {} +
