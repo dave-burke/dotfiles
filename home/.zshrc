@@ -59,6 +59,20 @@ fi
 #Midnight Commander skin
 export MC_SKIN="$HOME/.config/mc/lib/mc-solarized-skin/solarized.ini"
 
+function addPath {
+	local newPath="${1}"
+
+	if [ -d "${newPath}" ]; then
+		if ! echo "${PATH}" | grep -q "${newPath}"; then
+			PATH="${PATH}:${newPath}"
+		fi
+	else
+		echo "${newPath} is NOT a directory!"
+	fi
+}
+
+addPath "${HOME}/bin"
+
 #Functions
 function findvim {
 	find -iname "$1" -exec vim -p {} +
