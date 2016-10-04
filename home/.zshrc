@@ -215,6 +215,7 @@ alias treed='tree -d'
 alias wgetp='wget --page-requisites --adjust-extension --span-hosts --convert-links --backup-converted'
 alias grep='grep --exclude-dir=.git'
 alias disks='ls /dev/disk/by-label'
+alias gw='./gradlew'
 
 # GPG doesn't list keys in your keyring for some reason.
 alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
