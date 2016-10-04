@@ -80,6 +80,21 @@ if [ -z "${JAVA_HOME}" ]; then
 fi
 
 #Functions
+if ! command -v watch > /dev/null; then
+	# Implement a simple replacement
+	function watch {
+		if ! command -v ${1}; then
+			echo "Nothing to watch"
+			return
+		else
+			while true; do
+				clear
+				${@}
+				sleep 2
+			done
+		fi
+	}
+fi
 function findvim {
 	find -iname "$1" -exec vim -p {} +
 }
