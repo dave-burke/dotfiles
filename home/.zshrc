@@ -137,7 +137,7 @@ function findgrep {
 		grepArgs="-i"
 	fi
 
-	find -type f -iname "${findPattern}" -print0 | xargs -0 grep ${grepArgs} "${grepPattern}"
+	find -type f -iname "${findPattern}" -print0 | xargs -0 -n 1 -P 2 grep ${grepArgs} "${grepPattern}"
 }
 
 function odsgrep {
