@@ -25,7 +25,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
 Plugin 'Align'
-"Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'AutoTag'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
@@ -50,8 +50,8 @@ filetype plugin indent on
 set t_Co=256
 syntax enable
 set hlsearch
-"set background=dark
-"colorscheme solarized
+set background=dark
+colorscheme solarized
 
 " Airline config
 set laststatus=2
