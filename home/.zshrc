@@ -149,6 +149,24 @@ function odsgrep {
 	done
 }
 
+function upto {
+	local target="${1}"
+	local saved="$(pwd)"
+	local dir
+	pushd "${saved}"
+	unsetopt autopushd
+	while [[ "${dir##*/}" != "${target}" ]]; do
+		if [[ "${dir}" == "/" ]]; then
+			echo "Could not find parent directory '${target}'"
+			cd "${saved}"
+			break;
+		fi
+		cd ..
+		dir="$(pwd)"
+	done
+	setopt autopushd
+}
+
 alias cprv='rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress --'
 function cpv {
 	command -v pv > /dev/null
