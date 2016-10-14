@@ -29,7 +29,7 @@
 	lu = !git l @{upstream}..HEAD
 
 	# "Overview" -- Show recent logs and workspace status
-	o = !(git l | head -n 30) && git status
+	o = !(git l -n 20) && git status
 
 	# Shortcut for 'status'
 	s = status
