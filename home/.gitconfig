@@ -15,6 +15,8 @@
 [pull]
 	# Rebase the current branch after pulling instead of merging
 	rebase = true
+[fetch]
+	prune = true
 [rerere]
 	# Remember how conflicts were resolved and repeat them if seen again.
 	enabled = true
