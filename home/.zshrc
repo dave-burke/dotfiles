@@ -72,6 +72,7 @@ function addPath {
 }
 
 addPath "${HOME}/bin"
+addPath "${HOME}/.node_modules/bin"
 
 if [ -z "${JAVA_HOME}" ]; then
 	if [ -s "/usr/lib/jvm/default" -a -z "${JAVA_HOME}" ] ; then
