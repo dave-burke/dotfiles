@@ -51,7 +51,10 @@ set t_Co=256
 syntax enable
 set hlsearch
 set background=dark
-colorscheme solarized
+try
+	colorscheme solarized
+catch
+endtry
 
 " Airline config
 set laststatus=2
