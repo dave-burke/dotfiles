@@ -11,7 +11,7 @@
 	tool = vimdiff
 [push]
 	# Default to the remote branch with the same name as the local branch
-	default = matching
+	default = simple
 [pull]
 	# Rebase the current branch after pulling instead of merging
 	rebase = true
