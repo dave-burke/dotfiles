@@ -35,9 +35,13 @@ function link_dotfile() {
 
 	echo -n "Creating symlink to ${base_name}..."
 	if [[ -e "${link_name}" ]]; then
-		echo "${link_name} already exists. Overwrite?"
 		local do_overwrite
-		read do_overwrite
+		if [[ "${force_overwrite}" == "true" ]]; then
+			do_overwrite="y"
+		else
+			echo "${link_name} already exists. Overwrite?"
+			read do_overwrite
+		fi
 		if [[ "${do_overwrite:0:1}" != "y" ]]; then
 			echo "skipping ${base_name}"
 			return
@@ -46,7 +50,10 @@ function link_dotfile() {
 	ln --verbose --force --symbolic "${target}" "${link_name}"
 }
 
-
+if [[ "${1}" == "-f" ]]; then
+	force_overwrite="true"
+	shift
+fi
 echo "Creating symlinks for config files"
 
 #This causes issues with the nested read command in link_dotfiles
