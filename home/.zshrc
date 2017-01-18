@@ -259,10 +259,13 @@ alias reloadzsh="source ~/.zshrc && echo zshrc reloaded"
 alias zshrc="vim ~/.zshrc && reloadzsh"
 
 #for gnu screen
-alias sn='screen -S'
-alias sa='screen -r'
-alias sl='screen -ls'
-
+function s {
+	if [[ -z $1 ]]; then
+		screen -ls 2> /dev/null || echo "[No sessions]"
+	else
+		screen -r $@ 2> /dev/null || screen -S $@
+	fi
+}
 
 #for tmux
 alias tmux='tmux -2' #Use 256 colors
