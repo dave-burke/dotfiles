@@ -149,6 +149,9 @@ au BufWinEnter if &fdm == 'syntax' | setlocal foldmethod=manual | endif
 map Q gq
 
 " Key mappings
+" Use ctrl-t to move between tabs
+map <C-T> :tabn<cr>
+
 " Use ctrl-[jkhl] to move around splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
