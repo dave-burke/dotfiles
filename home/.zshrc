@@ -135,7 +135,7 @@ function findgrep {
 	if [ $# -gt 0 ]; then
 		grepArgs=$@
 	else
-		grepArgs="-i"
+		grepArgs="-iH"
 	fi
 
 	find -type f -iname "${findPattern}" -print0 | xargs -0 -n 1 -P 2 grep ${grepArgs} "${grepPattern}"
