@@ -24,6 +24,7 @@ call vundle#begin(expand("$VIMFILES//bundle"))
 Plugin 'gmarik/Vundle.vim'
 
 " My Bundles
+Plugin 'airblade/vim-gitgutter'
 Plugin 'Align'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'AutoTag'
@@ -55,6 +56,9 @@ try
 	colorscheme solarized
 catch
 endtry
+
+" gitgutter config
+set updatetime=250
 
 " Airline config
 set laststatus=2
