@@ -150,6 +150,10 @@ function odsgrep {
 	done
 }
 
+function mount_fat {
+	sudo mount -v -t vfat -o umask=0022,uid=$(id -u),gid=$(id -g) "${1}" "${2}"
+}
+
 function upto {
 	local target="${1}"
 	local saved="$(pwd)"
@@ -259,9 +263,6 @@ alias sn='screen -S'
 alias sa='screen -r'
 alias sl='screen -ls'
 
-function mount_fat {
-	sudo mount -v -t vfat -o umask=0022,uid=$(id -u),gid=$(id -g) "${1}" "${2}"
-}
 
 #for tmux
 alias tmux='tmux -2' #Use 256 colors
