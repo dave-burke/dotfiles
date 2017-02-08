@@ -1,0 +1,4 @@
+hardstatus off
+hardstatus lastline
+hardstatus string '%{= kG}[ %{G}%S %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
+
