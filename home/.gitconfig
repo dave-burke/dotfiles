@@ -24,7 +24,7 @@
 	# Display a pretty log
 	l = log --graph --branches --tags --remotes --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
 
-	# Show only logs back to upstream branch
+	# Show only logs back to master
 	lm = !git l master..HEAD
 
 	# Show only logs back to upstream branch
