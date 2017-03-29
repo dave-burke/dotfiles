@@ -34,7 +34,7 @@
 	o = !(git l -n 20) && git status && git stash list
 
 	# Shortcut for 'status'
-	s = status
+	s = status --short --branch
 
 	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
