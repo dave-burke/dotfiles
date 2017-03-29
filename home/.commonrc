@@ -1,3 +1,6 @@
+# Set default editor
+export EDITOR=vim
+
 #Manage dir history
 DIRSTACKSIZE=20
 alias dh='dirs -v'
