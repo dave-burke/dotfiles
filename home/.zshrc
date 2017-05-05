@@ -18,6 +18,7 @@ autoload zkbd
 function zkbd_file() {
     [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
     [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
+    [[ -f ~/.zkbd/default ]] && printf '%s' ~/".zkbd/default" && return 0
     return 1
 }
 
