@@ -22,19 +22,25 @@
 	enabled = true
 [alias]
 	# Display a pretty log
-	l = log --graph --branches --tags --remotes --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
+	lol = log --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
 
-	# Show only logs back to master
-	lm = !git l master..HEAD
+	# Show everything
+	l = !git lol --graph --branches --tags --remotes
+
+	# Show only logs back to master branch
+	lm = !git lol master..
 
 	# Show only logs back to upstream branch
-	lu = !git l @{upstream}..HEAD
+	lu = !git lol @{upstream}..
+
+	# Review commit diffs in chronological order
+	review = log -p --reverse
 
 	# Shortcut for 'status'
 	s = status --short --branch
 
 	# "Overview" -- Show recent logs and workspace status
-	o = !(git l -n 20) && git s && git stash list
+	o = !git l -n 20 && git s && git stash list
 
 	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
