@@ -107,21 +107,27 @@ function mount_fat {
 	sudo mount -v -t vfat -o umask=0022,uid=$(id -u),gid=$(id -g) "${1}" "${2}"
 }
 
-function upto {
+function up {
 	local target="${1}"
 	local saved="$(pwd)"
 	local dir
 	pushd "${saved}"
 	unsetopt autopushd
-	while [[ "${dir##*/}" != "${target}" ]]; do
-		if [[ "${dir}" == "/" ]]; then
-			echo "Could not find parent directory '${target}'"
-			cd "${saved}"
-			break;
-		fi
-		cd ..
-		dir="$(pwd)"
-	done
+	if [[ "${target}" =~ "^[0-9]+$" ]]; then
+		for i in `seq 1 ${target}`; do
+			cd ..
+		done
+	else
+		while [[ "${dir##*/}" != "${target}" ]]; do
+			if [[ "${dir}" == "/" ]]; then
+				echo "Could not find parent directory '${target}'"
+				cd "${saved}"
+				break;
+			fi
+			cd ..
+			dir="$(pwd)"
+		done
+	fi
 	setopt autopushd
 }
 
@@ -232,14 +238,4 @@ function t {
 		fi
 	fi
 }
-
-alias cd..="cd .."
-alias cd..2="cd ../.."
-alias cd..3="cd ../../.."
-alias cd..4="cd ../../../.."
-alias cd..5="cd ../../../../.."
-alias cd..6="cd ../../../../../.."
-alias cd..7="cd ../../../../../../.."
-alias cd..8="cd ../../../../../../../.."
-alias cd..9="cd ../../../../../../../../.."
 
