@@ -60,6 +60,9 @@
 	# Combine the staged changes with the previous commit without prompting to edit the message.
 	fixup = commit --amend --no-edit
 
+	# Reword a commit, but show the diff. Beware if you've got new stuff staged.
+	reword = commit --amend --verbose
+
 	# "New Branch" to create a new branch and immediately switch to it.
 	nb = checkout -b
 
