@@ -63,6 +63,9 @@
 	# Reword a commit, but show the diff. Beware if you've got new stuff staged.
 	reword = commit --amend --verbose
 
+	# Check Out an existing branch
+	co = checkout
+
 	# "New Branch" to create a new branch and immediately switch to it.
 	nb = checkout -b
 
