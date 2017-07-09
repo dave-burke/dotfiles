@@ -86,7 +86,7 @@
 
 	# "ReBase Upstream" to clean up history before pushing to a remote.
 	rbu = rebase -i @{upstream}
-	#
+
 	# "ReBase master" to clean up history before merging into master.
 	rbm = rebase -i master
 
