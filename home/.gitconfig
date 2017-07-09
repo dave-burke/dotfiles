@@ -40,7 +40,7 @@
 	s = status --short --branch
 
 	# "Overview" -- Show recent logs and workspace status
-	o = !git l -n 20 && git s && git stash list
+	o = !git l -n 20 && git s && git ls-files -v | grep "^h" &&  git stash list
 
 	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
@@ -62,6 +62,9 @@
 
 	# Reword a commit, but show the diff. Beware if you've got new stuff staged.
 	reword = commit --amend --verbose
+
+	forget = update-index --assume-unchanged
+	remember = update-index --no-assume-unchanged
 
 	# Check Out an existing branch
 	co = checkout
