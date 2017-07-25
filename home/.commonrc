@@ -108,6 +108,9 @@ function mount_fat {
 }
 
 function up {
+	if [[ $# -eq 0 ]]; then
+		cd ..
+	fi
 	local target="${1}"
 	local saved="$(pwd)"
 	local dir
@@ -118,7 +121,12 @@ function up {
 			cd ..
 		done
 	else
-		while [[ "${dir##*/}" != "${target}" ]]; do
+		# The grep line here is useful for getting to any project root regardless of
+		# the project name, e.g. `up .git` to go up to the first directory containing
+		# a .git directory. That means this won't work quite right if you are trying
+		# to go up to a directory that contains a subdir of the same name, but that's
+		# not very common.
+		while [[ "${dir##*/}" != "${target}" ]] && ! ls -1A | grep -q "${target}"; do
 			if [[ "${dir}" == "/" ]]; then
 				echo "Could not find parent directory '${target}'"
 				cd "${saved}"
@@ -183,6 +191,13 @@ function cpv {
 			fi
 		done
 	fi
+}
+
+function scpv {
+	local output="${@: -1}"
+	echo "last arg is ${output}"
+	set -- "${@:1:$#-1}" # Doesn't work in zsh. Hmm.
+	echo "the other args are ${@}"
 }
 
 # Misc Config

@@ -37,6 +37,7 @@ Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
+Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -95,7 +96,7 @@ nnoremap <C-u> :UndotreeToggle<cr>
 map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic config
-let g:syntastic_javascript_checkers=['jshint','jsl']
+let g:syntastic_javascript_checkers=['jshint'] "or jsl
 let g:syntastic_java_checkers=['checkstyle']
 
 " Neocomplete config

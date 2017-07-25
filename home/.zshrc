@@ -50,9 +50,9 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 #Don't overwrite existing files with > operator. Use >! to override.
 setopt noclobber
 
+[[ -r ~/.commonrc ]] && source ~/.commonrc
+
 if [[ -f ~/.zshrc-local ]]; then
 	source ~/.zshrc-local
 fi
-
-[[ -r ~/.commonrc ]] && source ~/.commonrc
 

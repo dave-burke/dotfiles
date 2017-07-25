@@ -78,6 +78,9 @@
 	# "Join Branch (with) Message" to merge without fast-forward and specify the message
 	jbm = merge --no-ff -m
 
+	# Push the current branch upstream
+	pushnew = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+
 	# Shorthand for diff. Shows what has changed, but is *not* staged for commit.
 	d = diff
 
