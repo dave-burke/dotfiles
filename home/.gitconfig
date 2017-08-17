@@ -86,6 +86,12 @@
 	# Push the current branch upstream
 	pushnew = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 
+	# Prune local merged branches
+	localprune = !git branch --no-color --merged master | grep -v master | xargs -r git branch -d
+
+	# Clean up after closing a pull request
+	finishbranch = !git checkout master && git pull && git localprune
+
 	# Shorthand for diff. Shows what has changed, but is *not* staged for commit.
 	d = diff
 
