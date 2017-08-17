@@ -20,9 +20,11 @@
 [rerere]
 	# Remember how conflicts were resolved and repeat them if seen again.
 	enabled = true
+[pretty]
+	lol = "format:%C(auto)%h %d %s %Cgreen%ad %Cblueby %an"
 [alias]
 	# Display a pretty log
-	lol = log --pretty=format:'%C(auto)%h %d %s %Cgreen%ad %Cblueby %an (%ae)' --date=relative
+	lol = log --pretty=lol --date=relative
 
 	# Show everything
 	l = !git lol --graph --branches --tags --remotes
