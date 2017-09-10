@@ -45,7 +45,7 @@
 	s = !git status --short --branch && git ls-files -v | grep "^h"
 
 	# "Overview" -- Show recent logs and workspace status
-	o = !git l20 && git s && git stash list
+	o = "!git l20; git s; git stash list"
 
 	# Print changes to a text file. Usage: git patch master
 	patch = format-patch --patience --stdout
