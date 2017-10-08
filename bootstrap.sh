@@ -59,7 +59,7 @@ echo "Creating symlinks for config files"
 #This causes issues with the nested read command in link_dotfiles
 #find "${DOT_FILES}/home" -type f -print0 | while IFS= read -r -d $'\0' f; do
 
-for f in $(find "${DOT_FILES}/home" -type f); do # This won't work if any files have spaces
+for f in $(find "${DOT_FILES}/home"); do # This won't work if any files have spaces
 	link_dotfile "${f}"
 done
 
