@@ -57,6 +57,9 @@ try
 	colorscheme solarized
 catch
 endtry
+" Make guake transparent
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
 
 " gitgutter config
 set updatetime=250
