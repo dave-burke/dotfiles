@@ -13,6 +13,8 @@ setopt HIST_VERIFY
 setopt INC_APPEND_HISTORY
 bindkey -v
 
+autoload -Uz compinit && compinit
+
 # This automatically runs zkbd if the current $TERM doesn't have a file in .zkbd
 autoload zkbd
 function zkbd_file() {
