@@ -91,8 +91,15 @@ nnoremap <C-u> :UndotreeToggle<cr>
 map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic config
-let g:syntastic_javascript_checkers=['jshint'] "or jsl
+let g:syntastic_javascript_checkers=['eslint', 'jshint', 'jsl', 'jslint']
 let g:syntastic_java_checkers=['checkstyle']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Configure tabs
 set noexpandtab
