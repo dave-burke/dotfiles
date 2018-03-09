@@ -93,9 +93,14 @@ map <C-n> :NERDTreeToggle<CR>
 let g:syntastic_javascript_checkers=['jshint'] "or jsl
 let g:syntastic_java_checkers=['checkstyle']
 
-" set tab width
-set ts=8
-set shiftwidth=8 "same as tabwidth
+" Configure tabs
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
