@@ -27,21 +27,15 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Align'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'AutoTag'
 Plugin 'bling/vim-airline'
-Plugin 'ervandew/supertab'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'gioele/vim-autoswap'
-if !has('gui') | Plugin 'jamessan/vim-gnupg' | endif
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
-Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-if has('lua') | Plugin 'Shougo/neocomplete.vim' | endif
 Plugin 'tpope/vim-fugitive'
 
 " Finish Vundle setup
@@ -84,9 +78,6 @@ endif
 let g:ctrlp_root_markers = ['.acignore','.gitignore']
 let g:ctrlp_custom_ignore = '\v\.(class|exe|dll|zip)$'
 
-" Tagbar config
-nmap <C-m> :TagbarToggle<CR>
-
 " Undotree config
 " CTRL-U is 'scroll up' by default and I never use that.
 nnoremap <C-u> :UndotreeToggle<cr>
@@ -101,21 +92,6 @@ map <C-n> :NERDTreeToggle<CR>
 " Syntastic config
 let g:syntastic_javascript_checkers=['jshint'] "or jsl
 let g:syntastic_java_checkers=['checkstyle']
-
-" Neocomplete config
-if has('lua')
-	let g:neocomplete#enable_at_startup = 1
-	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-	autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-	autocmd FileType java setlocal omnifunc=javacomplete#Complete
-	set tags=./tags;
-else
-	" This prevents the annoying pop-up when neocomplete can't load
-	let g:loaded_neocomplete = 1
-endif
 
 " set tab width
 set ts=8
