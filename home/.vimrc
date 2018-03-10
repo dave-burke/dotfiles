@@ -93,6 +93,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic config
 let g:syntastic_javascript_checkers=['eslint', 'jshint', 'jsl', 'jslint']
+let g:syntastic_vue_checkers=['eslint']
 let g:syntastic_java_checkers=['checkstyle']
 
 set statusline+=%#warningmsg#
@@ -129,6 +130,7 @@ fun! s:DetectNodeLinters ()
 	let eslint_exec = s:GetNodeExec(node_modules, 'eslint')
 	if eslint_exec isnot ''
 		let b:syntastic_javascript_eslint_exec = eslint_exec
+		let b:syntastic_vue_eslint_exec = eslint_exec
 	else
 		let jshint_exec = s:GetNodeExec(node_modules, 'jshint')
 		if jshint_exec isnot ''
@@ -148,7 +150,7 @@ fun! s:DetectNodeLinters ()
 endfun
 
 if has("autocmd")
-	autocmd Filetype javascript call s:DetectNodeLinters()
+	autocmd Filetype javascript,vue call s:DetectNodeLinters()
 endif
 
 " Configure tabs
