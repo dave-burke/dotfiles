@@ -101,6 +101,55 @@ set statusline+=%*
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" return full path with the trailing slash
+"  or an empty string if we're not in an npm project
+fun! s:GetNodeModulesAbsPath ()
+	let lcd_saved = fnameescape(getcwd())
+	silent! exec "lcd" expand('%:p:h')
+	let path = finddir('node_modules', '.;')
+	exec "lcd" lcd_saved
+
+	" fnamemodify will return full path with trailing slash;
+	" if no node_modules found, we're safe
+	return path is '' ? '' : fnamemodify(path, ':p')
+endfun
+
+" return full path of local eslint executable
+"	or an empty string if no executable found
+fun! s:GetNodeExec (node_modules, name)
+	let lint_guess = a:node_modules is '' ? '' : a:node_modules . '.bin/' . a:name
+	return exepath(lint_guess)
+endfun
+
+" Look for a linter in my order of preference
+fun! s:DetectNodeLinters ()
+	let node_modules = s:GetNodeModulesAbsPath()
+
+	let eslint_exec = s:GetNodeExec(node_modules, 'eslint')
+	if eslint_exec isnot ''
+		let b:syntastic_javascript_eslint_exec = eslint_exec
+	else
+		let jshint_exec = s:GetNodeExec(node_modules, 'jshint')
+		if jshint_exec isnot ''
+			let b:syntastic_javascript_jshint_exec = jshint_exec
+		else
+			let jsl_exec = s:GetNodeExec(node_modules, 'jsl')
+			if jsl_exec isnot ''
+				let b:syntastic_javascript_jsl_exec = jsl_exec
+			else
+				let jslint_exec = s:GetNodeExec(node_modules, 'jslint')
+				if jslint_exec isnot ''
+					let b:syntastic_javascript_jslint_exec = jslint_exec
+				endif
+			endif
+		endif
+	endif
+endfun
+
+if has("autocmd")
+	autocmd Filetype javascript call s:DetectNodeLinters()
+endif
+
 " Configure tabs
 set noexpandtab
 set copyindent
