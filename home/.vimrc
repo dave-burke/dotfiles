@@ -162,6 +162,11 @@ set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 
+" Capitulate to the collective insanity of the js community
+if has("autocmd")
+	autocmd Filetype javascript,json,vue,html,yaml setlocal expandtab softtabstop=2 shiftwidth=2 tabstop=2
+endif
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
