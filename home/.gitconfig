@@ -92,9 +92,6 @@
 	# Prune local merged branches
 	localprune = !git branch --no-color --merged master | grep -v master | xargs -r git branch -d
 
-	# Clean up after closing a pull request
-	finishbranch = !git checkout master && git pull && git localprune
-
 	# Shorthand for diff. Shows what has changed, but is *not* staged for commit.
 	d = diff
 
@@ -106,6 +103,15 @@
 
 	# "ReBase master" to clean up history before merging into master.
 	rbm = rebase -i master
+
+	# "Pull Master and Rebase" to rebase your branch on master
+	pmr = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git rebase master ${ORIG_BRANCH}"
+
+	# Pull Master from another branch
+	pm = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git checkout ${ORIG_BRANCH}"
+
+	# Pull Master and Prune
+	pmp = !git checkout master && git pull && git localprune
 
 	# Reset to wherever HEAD was prior to the last command, to recover from a mistake.
 	back = reset --hard HEAD@{1}
