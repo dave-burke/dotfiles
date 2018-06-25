@@ -68,7 +68,10 @@
 	# Reword a commit, but show the diff. Beware if you've got new stuff staged.
 	reword = commit --amend --verbose
 
+	# Stop tracking a file
 	forget = update-index --assume-unchanged
+
+	# Start tracking a file
 	remember = update-index --no-assume-unchanged
 
 	# Check Out an existing branch
