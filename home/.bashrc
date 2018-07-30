@@ -6,3 +6,20 @@ PS1="\[$(tput sc; rightprompt; tput rc)\]\u@\h:\w\$ "
  
 [[ -r ~/.commonrc ]] && source ~/.commonrc
 
+# Keep dirs stack from getting too big
+autopop(){
+	while [[ $(dirs -p | wc -l) -gt $1 ]]; do
+		popd -0 > /dev/null
+	done
+}
+# Emulate autopushd from zsh
+cd(){
+	if [[ "${1}" == "-" ]]; then
+		pushd "$(dirs +1)" > /dev/null
+	elif [[ "${1}" =~ -[0-9]+ ]]; then
+		pushd "$(dirs +${1:1})" > /dev/null
+	else
+		pushd ${1} > /dev/null
+	fi
+	autopop 20
+}
