@@ -32,6 +32,7 @@ Plugin 'dpc/vim-smarttabs'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'gioele/vim-autoswap'
 Plugin 'groovy.vim'
+if !has('gui') | Plugin 'jamessan/vim-gnupg' | endif
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ledger/vim-ledger'
