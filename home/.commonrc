@@ -257,3 +257,8 @@ function t {
 	fi
 }
 
+# Use nice utilities if you have them
+if command -v bat > /dev/null; then
+	alias cat=bat
+fi
+
