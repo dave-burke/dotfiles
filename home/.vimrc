@@ -33,6 +33,7 @@ Plugin 'freitass/todo.txt-vim'
 Plugin 'gioele/vim-autoswap'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'kien/ctrlp.vim'
+Plugin 'ledger/vim-ledger'
 Plugin 'mbbill/undotree'
 Plugin 'posva/vim-vue'
 Plugin 'rodjek/vim-puppet'
@@ -60,6 +61,10 @@ highlight NonText ctermbg=none
 
 " gitgutter config
 set updatetime=250
+
+" ledger-vim config
+let g:ledger_bin='hledger'
+"autocmd FileType ledger setlocal omnifunc=ledger#complete#omnifunc
 
 " Airline config
 set laststatus=2
