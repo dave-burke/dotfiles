@@ -7,6 +7,9 @@ PS1="\[$(tput sc; rightprompt; tput rc)\]\u@\h:\w\$ "
 # Use VIM keybindings
 set -o vi
  
+# Allow forward command searching via CTRL-S
+[[ $- == *=* ]] && stty --ixon
+
 [[ -r ~/.commonrc ]] && source ~/.commonrc
 
 # Keep dirs stack from getting too big
