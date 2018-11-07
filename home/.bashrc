@@ -3,6 +3,9 @@ rightprompt(){
 	printf "%*s" $((${COLUMNS:-$(tput cols)} - 3)) "\$? @ \A"
 }
 PS1="\[$(tput sc; rightprompt; tput rc)\]\u@\h:\w\$ "
+
+# Use VIM keybindings
+set -o vi
  
 [[ -r ~/.commonrc ]] && source ~/.commonrc
 
