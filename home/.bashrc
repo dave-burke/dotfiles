@@ -14,7 +14,9 @@ autopop(){
 }
 # Emulate autopushd from zsh
 cd(){
-	if [[ "${1}" == "-" ]]; then
+	if [[ $# -eq 0 ]]; then
+		pushd "${HOME}" > /dev/null
+	elif [[ "${1}" == "-" ]]; then
 		pushd "$(dirs +1)" > /dev/null
 	elif [[ "${1}" =~ -[0-9]+ ]]; then
 		pushd "$(dirs +${1:1})" > /dev/null
