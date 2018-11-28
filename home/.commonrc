@@ -228,6 +228,7 @@ alias disks='ls /dev/disk/by-label'
 alias gw='./gradlew'
 alias fehg='feh -g 800x600'
 alias pse='ps -e | grep'
+alias dps="docker ps -a --format '{{.ID}}~{{.Names}}~{{.Image}}~{{.Status}}' | column -s '~' -t"
 
 # GPG doesn't list keys in your keyring for some reason.
 alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
