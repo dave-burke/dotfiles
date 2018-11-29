@@ -10,8 +10,6 @@ set -o vi
 # Allow forward command searching via CTRL-S
 [[ $- == *=* ]] && stty --ixon
 
-[[ -r ~/.commonrc ]] && source ~/.commonrc
-
 # Keep dirs stack from getting too big
 autopop(){
 	while [[ $(dirs -p | wc -l) -gt $1 ]]; do
@@ -35,4 +33,6 @@ cd(){
 #aliases
 alias reloadsh="source ~/.bashrc && echo bashrc reloaded"
 alias shrc="vim ~/.bashrc && reloadsh"
+
+[[ -r ~/.commonrc ]] && source ~/.commonrc
 
