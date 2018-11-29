@@ -22,7 +22,7 @@ cdpushd(){
 		pushd "${HOME}" > /dev/null
 	elif [[ "${1}" == "-" ]]; then
 		pushd "$(dirs +1)" > /dev/null
-	elif [[ "${1}" =~ -[0-9]+ ]]; then
+	elif [[ "${1}" =~ ^-[0-9]+$ ]]; then
 		pushd "$(dirs +${1:1})" > /dev/null
 	else
 		pushd ${1} > /dev/null
