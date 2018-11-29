@@ -17,7 +17,7 @@ autopop(){
 	done
 }
 # Emulate autopushd from zsh
-cd(){
+cdpushd(){
 	if [[ $# -eq 0 ]]; then
 		pushd "${HOME}" > /dev/null
 	elif [[ "${1}" == "-" ]]; then
@@ -29,6 +29,7 @@ cd(){
 	fi
 	autopop 20
 }
+alias cd=cdpushd
 
 #aliases
 alias reloadsh="source ~/.bashrc && echo bashrc reloaded"
