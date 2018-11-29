@@ -27,7 +27,7 @@ cdpushd(){
 	else
 		pushd ${1} > /dev/null
 	fi
-	autopop 20
+	autopop $DIRSTACKSIZE
 }
 alias cd=cdpushd
 
