@@ -116,11 +116,13 @@ function up {
 	local target="${1}"
 	local saved="$(pwd)"
 	local dir
-	pushd "${saved}"
-	unsetopt autopushd
-	if [[ "${target}" =~ "^[0-9]+$" ]]; then
-		for i in `seq 1 ${target}`; do
-			cd ..
+	#pushd "${saved}" >> /dev/null
+	if command -v unsetopt >> /dev/null; then
+		unsetopt autopushd
+	fi
+	if [[ "${target}" =~ ^[0-9]+$ ]]; then
+		for i in `seq -s ' ' 1 ${target}`; do
+			command cd ..
 		done
 	else
 		# The grep line here is useful for getting to any project root regardless of
@@ -131,14 +133,17 @@ function up {
 		while [[ "${dir##*/}" != "${target}" ]] && ! ls -1A | grep -q "${target}"; do
 			if [[ "${dir}" == "/" ]]; then
 				echo "Could not find parent directory '${target}'"
-				cd "${saved}"
+				command cd "${saved}"
 				break;
 			fi
-			cd ..
+			command cd ..
 			dir="$(pwd)"
 		done
 	fi
-	setopt autopushd
+	pushd . >> /dev/null
+	if command -v setopt >> /dev/null; then
+		setopt autopushd
+	fi
 }
 
 alias cprv='rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress --'
