@@ -232,7 +232,7 @@ alias grep='grep --exclude-dir=.git'
 alias disks='ls /dev/disk/by-label'
 alias gw='./gradlew'
 alias fehg='feh -g 800x600'
-alias pse='ps -e | grep'
+alias pse='ps -e | grep -i'
 alias dps="docker ps -a --format '{{.ID}}~{{.Names}}~{{.Image}}~{{.Status}}' | column -s '~' -t"
 
 # GPG doesn't list keys in your keyring for some reason.
