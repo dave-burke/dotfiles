@@ -31,3 +31,8 @@ cd(){
 	fi
 	autopop 20
 }
+
+#aliases
+alias reloadsh="source ~/.bashrc && echo bashrc reloaded"
+alias shrc="vim ~/.bashrc && reloadsh"
+

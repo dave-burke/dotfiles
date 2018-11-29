@@ -238,10 +238,6 @@ alias dps="docker ps -a --format '{{.ID}}~{{.Names}}~{{.Image}}~{{.Status}}' | c
 # GPG doesn't list keys in your keyring for some reason.
 alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
  
-#for zsh
-alias reloadzsh="source ~/.zshrc && echo zshrc reloaded"
-alias zshrc="vim ~/.zshrc && reloadzsh"
-
 #for gnu screen
 function s {
 	if [[ -z $1 ]]; then

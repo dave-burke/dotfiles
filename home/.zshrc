@@ -53,6 +53,9 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 setopt noclobber
 
 [[ -r ~/.commonrc ]] && source ~/.commonrc
+#aliases
+alias reloadsh="source ~/.zshrc && echo zshrc reloaded"
+alias shrc="vim ~/.zshrc && reloadsh"
 
 if [[ -f ~/.zshrc-local ]]; then
 	source ~/.zshrc-local
