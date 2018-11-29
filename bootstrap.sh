@@ -73,8 +73,8 @@ clone_repo "https://github.com/gmarik/Vundle.vim.git" "${HOME}/.vim/bundle/Vundl
 
 vim +PluginInstall +qall
 
-echo "Setting up Midnight Commander"
+#echo "Setting up Midnight Commander"
 
-clone_repo "https://github.com/iwfmp/mc-solarized-skin.git" "${HOME}/.config/mc/lib/mc-solarized-skin"
+#clone_repo "https://github.com/iwfmp/mc-solarized-skin.git" "${HOME}/.config/mc/lib/mc-solarized-skin"
 
 echo "Done!"
