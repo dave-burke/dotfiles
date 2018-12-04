@@ -44,6 +44,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
+Plugin 'udalov/kotlin-vim'
+Plugin 'valloric/youcompleteme'
 
 " Finish Vundle setup
 call vundle#end()
