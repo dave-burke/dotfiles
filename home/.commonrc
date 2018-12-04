@@ -122,7 +122,7 @@ function up {
 	fi
 	if [[ "${target}" =~ ^[0-9]+$ ]]; then
 		for i in `seq -s ' ' 1 ${target}`; do
-			command cd ..
+			builtin cd ..
 		done
 	else
 		# The grep line here is useful for getting to any project root regardless of
