@@ -146,6 +146,19 @@ function up {
 	fi
 }
 
+function down {
+	local locator="${1}"
+	local result=$(find . -name "${locator}" | head -n 1)
+	if [[ -f "${result}" ]]; then
+		result="$(dirname "${result}")"
+	fi
+	if [[ -d "${result}" ]]; then
+		cd "${result}"
+	else
+		(>&2 echo "No subdirectory found for ${locator}")
+	fi
+}
+
 alias cprv='rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress --'
 function cpv {
 	command -v pv > /dev/null
