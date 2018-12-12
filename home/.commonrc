@@ -213,6 +213,8 @@ function cpv {
 	fi
 }
 
+command -v tree > /dev/null || alias tree='find -not -name ".*"'
+
 function scpv {
 	local output="${@: -1}"
 	echo "last arg is ${output}"
