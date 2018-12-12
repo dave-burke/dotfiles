@@ -45,7 +45,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'udalov/kotlin-vim'
-Plugin 'valloric/youcompleteme'
+" This is a workaround to avoid installing the binary
+" component at work.
+if $OS != "Windows_NT"
+	Plugin 'valloric/youcompleteme'
+endif
 
 " Finish Vundle setup
 call vundle#end()
