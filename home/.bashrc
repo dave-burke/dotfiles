@@ -25,7 +25,7 @@ cdpushd(){
 	elif [[ "${1}" =~ ^-[0-9]+$ ]]; then
 		pushd "$(dirs +${1:1})" > /dev/null
 	else
-		pushd ${1} > /dev/null
+		pushd "${1}" > /dev/null
 	fi
 	autopop $DIRSTACKSIZE
 }
