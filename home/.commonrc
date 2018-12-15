@@ -133,10 +133,10 @@ function up {
 		while [[ "${dir##*/}" != "${target}" ]] && ! ls -1A | grep -q "${target}"; do
 			if [[ "${dir}" == "/" ]]; then
 				echo "Could not find parent directory '${target}'"
-				command cd "${saved}"
+				builtin cd "${saved}"
 				break;
 			fi
-			command cd ..
+			builtin cd ..
 			dir="$(pwd)"
 		done
 	fi
