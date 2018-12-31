@@ -30,10 +30,10 @@ function clone_repo() {
 
 function link_dotfile() {
 	local target="$(cd $(dirname ${1}); pwd)/$(basename ${1})"
-	local base_name="$(basename ${1})"
-	local link_name="${HOME}/${base_name}"
+	local relative_path="${target#*/home/}"
+	local link_name="${HOME}${relative_path}"
 
-	echo -n "Creating symlink to ${base_name}..."
+	echo -n "Linking ${link_name} to ${target}"
 	if [[ -e "${link_name}" ]]; then
 		local do_overwrite
 		if [[ "${force_overwrite}" == "true" ]]; then
@@ -43,9 +43,12 @@ function link_dotfile() {
 			read do_overwrite
 		fi
 		if [[ "${do_overwrite:0:1}" != "y" ]]; then
-			echo "skipping ${base_name}"
+			echo "skipping ${relative_path}"
 			return
 		fi
+	fi
+	if [[ ! -d "$(dirname ${link_name})" ]]; then
+		mkdir --verbose --parents "$(dirname ${link_name})"
 	fi
 	ln --verbose --force --symbolic "${target}" "${link_name}"
 }
@@ -59,7 +62,7 @@ echo "Creating symlinks for config files"
 #This causes issues with the nested read command in link_dotfiles
 #find "${DOT_FILES}/home" -type f -print0 | while IFS= read -r -d $'\0' f; do
 
-for f in $(find "${DOT_FILES}/home"); do # This won't work if any files have spaces
+for f in $(find "${DOT_FILES}/home" -type f); do # This won't work if any files have spaces
 	link_dotfile "${f}"
 done
 
