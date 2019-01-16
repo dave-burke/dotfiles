@@ -30,8 +30,8 @@ function clone_repo() {
 
 function link_dotfile() {
 	local target="$(cd $(dirname ${1}); pwd)/$(basename ${1})"
-	local relative_path="${target#*/home/}"
-	local link_name="${HOME}${relative_path}"
+	local relative_path="${target##*/home/}"
+	local link_name="${HOME}/${relative_path}"
 
 	echo -n "Linking ${link_name} to ${target}"
 	if [[ -e "${link_name}" ]]; then
