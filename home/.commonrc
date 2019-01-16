@@ -130,7 +130,7 @@ function up {
 		# a .git directory. That means this won't work quite right if you are trying
 		# to go up to a directory that contains a subdir of the same name, but that's
 		# not very common.
-		while [[ "${dir##*/}" != "${target}" ]] && ! ls -1A | grep -q "${target}"; do
+		while [[ "${dir##*/}" != "${target}" ]] && ! ls -1A | grep -q "^${target}\$"; do
 			if [[ "${dir}" == "/" ]]; then
 				echo "Could not find parent directory '${target}'"
 				builtin cd "${saved}"
