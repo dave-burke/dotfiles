@@ -117,6 +117,9 @@
 	# Pull Master and Prune
 	pmp = !git checkout master && git pull && git localprune
 
+	# Force push with lease
+	pushf = push --force-with-lease
+
 	# Reset to wherever HEAD was prior to the last command, to recover from a mistake.
 	back = reset --hard HEAD@{1}
 
