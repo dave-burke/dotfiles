@@ -13,9 +13,6 @@ set -e
 if [ -d "$HOME/bin" ] ; then
 	PATH="$HOME/bin:$PATH"
 fi
-if [ -e "$HOME/.Xmodmap" ] ; then
-	xmodmap "$HOME/.Xmodmap"
-fi
 if [ -s "/usr/lib/jvm/default" -a -z "${JAVA_HOME}" ] ; then
 	export JAVA_HOME="/usr/lib/jvm/default"
 fi
