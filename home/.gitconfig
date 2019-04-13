@@ -90,6 +90,9 @@
 	# "Merge into Master"
 	mm = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git merge --no-ff ${ORIG_BRANCH} && git push && git branch -D ${ORIG_BRANCH} && git push origin :${ORIG_BRANCH}"
 
+	# "Merge into Master Fast-Forward"
+	mmff = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git merge --ff-only ${ORIG_BRANCH} && git push && git branch -D ${ORIG_BRANCH} && git push origin :${ORIG_BRANCH}"
+
 	# Push the current branch upstream
 	pushnew = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 
