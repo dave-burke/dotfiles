@@ -13,6 +13,16 @@ if [[ -f ~/.dir_colors ]]; then
 	eval `dircolors ~/.dir_colors`
 fi
 
+# SSH Agent
+if command -v ssh-agent > /dev/null; then
+	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+		ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+	fi
+	if [[ ! "$SSH_AUTH_SOCK" || ! "$SSH_AGENT_PID" ]]; then
+		eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
+	fi
+fi
+
 # Paths
 function addPath {
 	local newPath="${1}"
