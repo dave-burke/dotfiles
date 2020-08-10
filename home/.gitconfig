@@ -11,6 +11,7 @@
 	tool = vimdiff
 [diff "ansible-vault"]
 	textconv = ansible-vault view --vault-password-file ~/.ansible-vault-key
+	cachetextconv = false
 [push]
 	# Default to the remote branch with the same name as the local branch
 	default = upstream
