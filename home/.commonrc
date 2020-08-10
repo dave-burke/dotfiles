@@ -38,6 +38,7 @@ addPath "${HOME}/bin"
 addPath "${HOME}/.local/bin"
 addPath "${HOME}/.node_modules/bin"
 addPath "/opt/bin"
+addPath "${HOME}/.gem/ruby/2.7.0/bin"
 
 if [ -z "${JAVA_HOME}" ]; then
 	if [ -s "/usr/lib/jvm/default" -a -z "${JAVA_HOME}" ] ; then
