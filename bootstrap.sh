@@ -2,6 +2,7 @@
 
 DOT_FILES="$(dirname ${0})"
 
+# Just some boilerplate for consistent behavior and verbose output
 function create_directory() {
 	local dir_name="${1}"
 	echo -n "Creating ${dir_name}..."
@@ -12,26 +13,11 @@ function create_directory() {
 	fi
 }
 
-function clone_repo() {
-	local repo="${1}"
-	local dest="${2}"
-
-	if [[ -d "${dest}" ]]; then
-		if [[ -d "${dest}/.git" ]]; then
-			# I guess it could technically be a different repo, but that seems unlikely
-			echo "${repo} is already cloned at ${dest}"
-		else
-			echo "${dest} already exists, but is not a git repository"
-		fi
-	else
-		git clone ${repo} "${dest}"
-	fi
-}
-
 function link_dotfile() {
+	# target=/full/path/to/file ('realpath' is not always available or consistent)
 	local target="$(cd $(dirname ${1}); pwd)/$(basename ${1})"
-	local relative_path="${target##*/home/}"
-	local link_name="${HOME}/${relative_path}"
+	local path_relative_to_home="${target##*/home/}"
+	local link_name="${HOME}/${path_relative_to_home}"
 
 	echo -n "Linking ${link_name} to ${target}"
 	if [[ -e "${link_name}" ]]; then
@@ -43,7 +29,7 @@ function link_dotfile() {
 			read do_overwrite
 		fi
 		if [[ "${do_overwrite:0:1}" != "y" ]]; then
-			echo "skipping ${relative_path}"
+			echo "skipping ${path_relative_to_home}"
 			return
 		fi
 	fi
@@ -57,6 +43,7 @@ if [[ "${1}" == "-f" ]]; then
 	force_overwrite="true"
 	shift
 fi
+
 echo "Creating symlinks for config files"
 
 #This causes issues with the nested read command in link_dotfiles
@@ -72,12 +59,8 @@ for d in backup undo swap bundle; do
 	create_directory "${HOME}/.vim/${d}"
 done
 
-clone_repo "https://github.com/gmarik/Vundle.vim.git" "${HOME}/.vim/bundle/Vundle.vim"
+git clone "https://github.com/gmarik/Vundle.vim.git" "${HOME}/.vim/bundle/Vundle.vim"
 
 vim +PluginInstall +qall
-
-#echo "Setting up Midnight Commander"
-
-#clone_repo "https://github.com/iwfmp/mc-solarized-skin.git" "${HOME}/.config/mc/lib/mc-solarized-skin"
 
 echo "Done!"
