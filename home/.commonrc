@@ -36,7 +36,7 @@ function addPath {
 
 addPath "${HOME}/bin"
 addPath "${HOME}/.local/bin"
-addPath "${HOME}/.node_modules/bin"
+addPath "${HOME}/.local/share/npm-packages/bin"
 addPath "/opt/bin"
 addPath "${HOME}/.gem/ruby/2.7.0/bin"
 
