@@ -1,3 +1,6 @@
+! This allows 'alt' to work in tmux
+XTerm.vt100.metaSendsEscape: true
+
 URxvt.scrollBar_right: true
 URxvt.perl-ext-common: default,tabbed
 URxvt.tabbed.tabbar-fg: 2
