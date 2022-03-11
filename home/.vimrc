@@ -73,6 +73,18 @@ set updatetime=250
 " ledger-vim config
 let g:ledger_bin='hledger'
 "autocmd FileType ledger setlocal omnifunc=ledger#complete#omnifunc
+if exists('g:ycm_filetype_blacklist')
+	call extend(g:ycm_filetype_blacklist, { 'ledger': 1 })
+endif
+au FileType ledger noremap { ?^\d<CR>
+au FileType ledger noremap } /^\d<CR>
+"Align selection with tab
+au FileType ledger vnoremap <silent> <Tab> :LedgerAlign<CR>
+" Align buffer with <leader>a
+au FileType ledger noremap <leader>a :LedgerAlignBuffer<CR>
+let g:ledger_align_at = 40
+let g:ledger_default_commodity = '$'
+
 
 " Airline config
 set laststatus=2
