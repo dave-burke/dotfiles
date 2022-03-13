@@ -55,7 +55,7 @@ done
 
 echo "Setting up VIM"
 
-for d in backup undo swap bundle; do
+for d in backup undo swap; do
 	create_directory "${HOME}/.vim/${d}"
 done
 
