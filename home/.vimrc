@@ -34,7 +34,7 @@ let g:plug_timeout=300
 
 " Gutter
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " Misc
 Plug 'altercation/vim-colors-solarized'
