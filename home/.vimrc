@@ -28,6 +28,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 call plug#begin()
 " The default plugin directory will be ~/.vim/plugged
+let g:plug_timeout=300
+
 " Make sure you use single quotes
 
 " Gutter
@@ -60,9 +62,9 @@ Plug 'udalov/kotlin-vim'
 
 "" This is a workaround to avoid installing the binary
 "" component at work.
-"if $OS != "Windows_NT"
-"	Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
-"endif
+if $OS != "Windows_NT"
+	Plug 'valloric/youcompleteme', { 'do': './install.py --ts-completer --java-completer' }
+endif
 
 call plug#end()
 
