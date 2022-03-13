@@ -59,8 +59,4 @@ for d in backup undo swap bundle; do
 	create_directory "${HOME}/.vim/${d}"
 done
 
-git clone "https://github.com/gmarik/Vundle.vim.git" "${HOME}/.vim/bundle/Vundle.vim"
-
-vim +PluginInstall +qall
-
 echo "Done!"
