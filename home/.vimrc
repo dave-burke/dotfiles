@@ -47,7 +47,6 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
-Plug 'dpc/vim-smarttabs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
