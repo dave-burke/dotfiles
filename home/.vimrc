@@ -51,6 +51,7 @@ Plug 'dpc/vim-smarttabs'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Filetype support
 Plug 'freitass/todo.txt-vim'
@@ -59,12 +60,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'rodjek/vim-puppet'
 Plug 'udalov/kotlin-vim'
-
-"" This is a workaround to avoid installing the binary
-"" component at work.
-if $OS != "Windows_NT"
-	Plug 'valloric/youcompleteme', { 'do': './install.py --ts-completer --java-completer' }
-endif
 
 call plug#end()
 
@@ -142,6 +137,13 @@ set statusline+=%*
 
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" CoC config
+" use <c-space> for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" use tab/s-tab to navigate list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " return full path with the trailing slash
 "  or an empty string if we're not in an npm project
