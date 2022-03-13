@@ -43,7 +43,7 @@ Plug 'jszakmeister/vim-togglecursor'
 Plug 'kien/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
