@@ -19,29 +19,43 @@ endif
 set nocompatible
 
 " Configure vim-plug
+
+" Install if missing
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin()
 " The default plugin directory will be ~/.vim/plugged
 " Make sure you use single quotes
+
+" Gutter
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/vim-easy-align'
-Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
-Plug 'freitass/todo.txt-vim'
+
+" Misc
+Plug 'altercation/vim-colors-solarized'
 Plug 'gioele/vim-autoswap'
-Plug 'dpc/vim-smarttabs'
-if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'kien/ctrlp.vim'
-Plug 'ledger/vim-ledger'
 Plug 'mbbill/undotree'
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
-Plug 'rodjek/vim-puppet'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
+
+" Code
+Plug 'dpc/vim-smarttabs'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+
+" Filetype support
+Plug 'freitass/todo.txt-vim'
+Plug 'ledger/vim-ledger'
+Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
+Plug 'rodjek/vim-puppet'
 Plug 'udalov/kotlin-vim'
 
 "" This is a workaround to avoid installing the binary
@@ -61,6 +75,7 @@ try
 	colorscheme solarized
 catch
 endtry
+
 " Make guake transparent
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -82,7 +97,6 @@ au FileType ledger vnoremap <silent> <Tab> :LedgerAlign<CR>
 au FileType ledger noremap <leader>a :LedgerAlignBuffer<CR>
 let g:ledger_align_at = 40
 let g:ledger_default_commodity = '$'
-
 
 " Airline config
 set laststatus=2
