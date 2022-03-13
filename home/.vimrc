@@ -48,7 +48,6 @@ if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
 Plug 'dpc/vim-smarttabs'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -131,74 +130,68 @@ nnoremap <C-u> :UndotreeToggle<cr>
 " Open NERDTree with Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
 
-" Syntastic config
-let g:syntastic_javascript_checkers=['eslint', 'jshint', 'jsl', 'jslint']
-let g:syntastic_vue_checkers=['eslint']
-let g:syntastic_java_checkers=['checkstyle']
-
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{coc#status()}
 set statusline+=%*
 
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " CoC config
-" use <c-space> for trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-" use tab/s-tab to navigate list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:coc_global_extensions = [
+	\'coc-tsserver',
+	\'coc-json',
+	\'coc-html',
+	\'coc-css',
+	\'coc-eslint',
+	\'coc-tailwindcss',
+	\'coc-java',
+	\'coc-clojure',
+	\'coc-docker',
+	\'coc-sh',
+	\'coc-yaml',
+	\'coc-snippets',
+\]
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" return full path with the trailing slash
-"  or an empty string if we're not in an npm project
-fun! s:GetNodeModulesAbsPath ()
-	let lcd_saved = fnameescape(getcwd())
-	silent! exec "lcd" expand('%:p:h')
-	let path = finddir('node_modules', '.;')
-	exec "lcd" lcd_saved
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-	" fnamemodify will return full path with trailing slash;
-	" if no node_modules found, we're safe
-	return path is '' ? '' : fnamemodify(path, ':p')
-endfun
-
-" return full path of local eslint executable
-"	or an empty string if no executable found
-fun! s:GetNodeExec (node_modules, name)
-	let lint_guess = a:node_modules is '' ? '' : a:node_modules . '.bin/' . a:name
-	return exepath(lint_guess)
-endfun
-
-" Look for a linter in my order of preference
-fun! s:DetectNodeLinters ()
-	let node_modules = s:GetNodeModulesAbsPath()
-
-	let eslint_exec = s:GetNodeExec(node_modules, 'eslint')
-	if eslint_exec isnot ''
-		let b:syntastic_javascript_eslint_exec = eslint_exec
-		let b:syntastic_vue_eslint_exec = eslint_exec
-	else
-		let jshint_exec = s:GetNodeExec(node_modules, 'jshint')
-		if jshint_exec isnot ''
-			let b:syntastic_javascript_jshint_exec = jshint_exec
-		else
-			let jsl_exec = s:GetNodeExec(node_modules, 'jsl')
-			if jsl_exec isnot ''
-				let b:syntastic_javascript_jsl_exec = jsl_exec
-			else
-				let jslint_exec = s:GetNodeExec(node_modules, 'jslint')
-				if jslint_exec isnot ''
-					let b:syntastic_javascript_jslint_exec = jslint_exec
-				endif
-			endif
-		endif
-	endif
-endfun
-
-if has("autocmd")
-	autocmd Filetype javascript,vue call s:DetectNodeLinters()
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+""" END Coc Config """
 
 " Configure tabs
 set noexpandtab
