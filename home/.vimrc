@@ -59,7 +59,9 @@ Plug 'ledger/vim-ledger'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'rodjek/vim-puppet'
+Plug 'tpope/vim-fireplace'
 Plug 'udalov/kotlin-vim'
+Plug 'vim-scripts/groovy.vim'
 
 call plug#end()
 
