@@ -16,43 +16,39 @@ if v:progname =~? "evim"
 	finish
 endif
 
-" Plugin management
-" Vundle setup
-filetype off
-set rtp+=$VIMFILES/bundle/Vundle.vim
-call vundle#begin(expand("$VIMFILES//bundle"))
-Plugin 'gmarik/Vundle.vim'
+set nocompatible
 
-" My Bundles
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Align'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'freitass/todo.txt-vim'
-Plugin 'gioele/vim-autoswap'
-Plugin 'groovy.vim'
-if !has('gui') | Plugin 'jamessan/vim-gnupg' | endif
-Plugin 'jszakmeister/vim-togglecursor'
-Plugin 'kien/ctrlp.vim'
-Plugin 'ledger/vim-ledger'
-Plugin 'mbbill/undotree'
-Plugin 'pangloss/vim-javascript'
-Plugin 'posva/vim-vue'
-Plugin 'rodjek/vim-puppet'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'udalov/kotlin-vim'
-" This is a workaround to avoid installing the binary
-" component at work.
-if $OS != "Windows_NT"
-	Plugin 'valloric/youcompleteme'
-endif
+" Configure vim-plug
+call plug#begin()
+" The default plugin directory will be ~/.vim/plugged
+" Make sure you use single quotes
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/vim-easy-align'
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+Plug 'freitass/todo.txt-vim'
+Plug 'gioele/vim-autoswap'
+if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'kien/ctrlp.vim'
+Plug 'ledger/vim-ledger'
+Plug 'mbbill/undotree'
+Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
+Plug 'rodjek/vim-puppet'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'udalov/kotlin-vim'
 
-" Finish Vundle setup
-call vundle#end()
-filetype plugin indent on
+"" This is a workaround to avoid installing the binary
+"" component at work.
+"if $OS != "Windows_NT"
+"	Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
+"endif
+
+call plug#end()
 
 " Solarized config
 set t_Co=256
