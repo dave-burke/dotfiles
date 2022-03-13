@@ -115,7 +115,10 @@ endif
 
 " ctrlp config
 let g:ctrlp_root_markers = ['.gitignore']
-let g:ctrlp_custom_ignore = '\v\.(class|exe|dll|zip)$'
+let g:ctrlp_custom_ignore = {
+	\ 'dir': '\v[\/](\.git|bin|dist|build|node_modules)$',
+	\ 'file': '\v\.(class|exe|dll|zip)$',
+	\}
 
 " Undotree config
 " CTRL-U is 'scroll up' by default and I never use that.
