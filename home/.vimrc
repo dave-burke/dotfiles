@@ -28,6 +28,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'freitass/todo.txt-vim'
 Plug 'gioele/vim-autoswap'
+Plug 'dpc/vim-smarttabs'
 if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'kien/ctrlp.vim'
@@ -40,6 +41,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'udalov/kotlin-vim'
 
 "" This is a workaround to avoid installing the binary
