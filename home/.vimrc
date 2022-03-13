@@ -135,18 +135,19 @@ set statusline+=%*
 
 " CoC config
 let g:coc_global_extensions = [
-	\'coc-tsserver',
-	\'coc-json',
-	\'coc-html',
-	\'coc-css',
-	\'coc-eslint',
-	\'coc-tailwindcss',
-	\'coc-java',
 	\'coc-clojure',
+	\'coc-css',
 	\'coc-docker',
+	\'coc-eslint',
+	\'coc-html',
+	\'coc-java',
+	\'coc-json',
 	\'coc-sh',
-	\'coc-yaml',
 	\'coc-snippets',
+	\'coc-tailwindcss',
+	\'coc-tsserver',
+	\'coc-vetur',
+	\'coc-yaml',
 \]
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
