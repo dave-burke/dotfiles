@@ -16,6 +16,14 @@ if v:progname =~? "evim"
 	finish
 endif
 
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 set nocompatible
 
 """"""""""""""""""""""
@@ -218,7 +226,9 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+if has("autocmd")
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+endif
 
 
 call plug#end()
@@ -228,17 +238,38 @@ try
 catch
 endtry
 
-" Make guake transparent
-hi Normal ctermbg=none
-highlight NonText ctermbg=none
+"""""""""""""""""""""""""
+" Miscelaneous settings "
+"""""""""""""""""""""""""
+set showcmd		" display incomplete commands
+set ignorecase		" make searches case insensitive...
+set smartcase		" unless the search pattern contains a capital letter
+set isk+=$,@,%          " none of these should be word separators
+set nowrap              " don't wrap lines by default
+set lbr                 " wrap on words
+set ssop-=options       " do not store global and local values in a session
+set cursorline          "highlight current line
+set guioptions=egmrLtTb
+set formatoptions=l
+set gfn=Source_Code_Pro:h9:cANSI
+set so=14
 
-" Statusline
-set statusline+=%#warningmsg#
-set statusline+=%{coc#status()}
-set statusline+=%*
+if has('mouse')
+	set mouse=a
+endif
 
+"""""""""""""
+" Clipboard "
+"""""""""""""
+if has("unix")
+	"set clipboard=unnamedplus
+else
+	set clipboard=unnamed "use windows clipboard
+endif
 
-" backup/undo/swap
+""""""""""""""""""""
+" backup/undo/swap "
+""""""""""""""""""""
 if has("vms")
 	set nobackup		" do not keep a backup file, use versions instead
 else
@@ -251,20 +282,26 @@ if has("undofile")
 endif
 set directory=$VIMFILES/swap/
 
-set showcmd		" display incomplete commands
-set ignorecase		" make searches case insensitive...
-set smartcase		" unless the search pattern contains a capital letter
 
-" Set up folding
-" Set foldlevel 1 for source files
+"""""""""""
+" Folding "
+"""""""""""
 set foldenable "turn on folding
 au BufReadPre set foldmethod=syntax
 au BufWinEnter if &fdm == 'syntax' | setlocal foldmethod=manual | endif
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
 
-" Key mappings
+""""""""""""""
+" Statusline "
+""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{coc#status()}
+set statusline+=%*
+
+
+""""""""""""""""
+" Key mappings "
+""""""""""""""""
 " Use ctrl-t to move between tabs
 map <C-T> :tabn<cr>
 
@@ -300,10 +337,33 @@ cabbrev sbk leftabove split
 nmap <leader>sbl :rightbelow vnew<CR> "Split window right
 cabbrev sbl rightbelow vsplit
 
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-	set mouse=a
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+"""""""""""""""
+" Misc Tweaks "
+"""""""""""""""
+" Make guake transparent
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+			\ | wincmd p | diffthis
 endif
+
+if !exists(":Txml")
+	command Txml set ft=xml | execute "%!tidy -q -i -xml -wrap 150"
+endif
+if !exists(":Thtml")
+	command Thtml set ft=html | execute "%!tidy -q -i -html -wrap 150"
+endif
+
+" Tidy up all xml files
+"autocmd FileType xml exe ":silent 1,$!tidy -q -i -xml"
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -314,9 +374,6 @@ if has("autocmd")
 
 	" For all text files set 'textwidth' to 78 characters.
 	autocmd FileType text setlocal textwidth=78
-
-	" Tidy up all xml files
-	"autocmd FileType xml exe ":silent 1,$!tidy -q -i -xml"
 
 	" When editing a file, always jump to the last known cursor position.
 	" Don't do it when the position is invalid or when inside an event handler
@@ -343,66 +400,29 @@ if has("autocmd")
 		autocmd VimResized * exec "normal \<C-w>="
 	endif
 
+	" Use regular numbers in insert-mode and relative numbers in normal mode.
+	set number
+	autocmd InsertEnter * :set relativenumber!
+	autocmd InsertLeave * :set relativenumber
+	set relativenumber
+
+	" Protect large files from sourcing and other overhead.
+	" Files become read only
+	if !exists("large_file_auto_commands_loaded")
+		let large_file_auto_commands_loaded = 1
+		" Large files are > 10M
+		" Set options:
+		" 	eventignore+=FileType (no syntax highlighting etc
+		"				assumes FileType always on)
+		"	noswapfile (save copy of file)
+		"	bufhidden=unload (save memory when other file is viewed)
+		"	buftype=nowritefile (is read-only)
+		"	undolevels=-1 (no undo possible)
+		let g:LargeFile = 1024 * 1024 * 10
+		augroup LargeFile
+			autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
+		augroup END
+	endif
+
 endif " has("autocmd")
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-			\ | wincmd p | diffthis
-endif
-
-if has("unix")
-	"set clipboard=unnamedplus
-else
-	set clipboard=unnamed "use windows clipboard
-endif
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  "setglobal bomb
-  set fileencodings=ucs-bom,utf-8,latin1
-endif
-set isk+=$,@,% "none of these should be word separators
-set nowrap "don't wrap lines by default
-set lbr "wrap on words
-set guioptions=egmrLtTb
-set formatoptions=l
-set gfn=Source_Code_Pro:h9:cANSI
-set so=14
-set ssop-=options " do not store global and local values in a session
-
-" Use regular numbers in insert-mode and relative numbers in normal mode.
-set number
-autocmd InsertEnter * :set relativenumber!
-autocmd InsertLeave * :set relativenumber
-set relativenumber
-
-set cursorline "highlight current line
-
-if !exists(":Txml")
-	command Txml set ft=xml | execute "%!tidy -q -i -xml -wrap 150"
-endif
-if !exists(":Thtml")
-	command Thtml set ft=html | execute "%!tidy -q -i -html -wrap 150"
-endif
-
-" Protect large files from sourcing and other overhead.
-" Files become read only
-if !exists("my_auto_commands_loaded")
-	let my_auto_commands_loaded = 1
-	" Large files are > 10M
-	" Set options:
-	" 	eventignore+=FileType (no syntax highlighting etc
-	"				assumes FileType always on)
-	"	noswapfile (save copy of file)
-	"	bufhidden=unload (save memory when other file is viewed)
-	"	buftype=nowritefile (is read-only)
-	"	undolevels=-1 (no undo possible)
-	let g:LargeFile = 1024 * 1024 * 10
-	augroup LargeFile
-		autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
-	augroup END
-endif
