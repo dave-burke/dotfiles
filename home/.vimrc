@@ -325,7 +325,7 @@ if has("multi_byte")
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
-set isk+=_,$,@,%,#,- "none of these should be word separators
+set isk+=$,@,% "none of these should be word separators
 set nowrap "don't wrap lines by default
 set lbr "wrap on words
 set guioptions=egmrLtTb
