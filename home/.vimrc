@@ -62,10 +62,7 @@ Plug 'altercation/vim-colors-solarized'
 set t_Co=256
 set hlsearch
 set background=dark
-try
-	colorscheme solarized
-catch
-endtry
+" colorscheme must be set after `call plug#end()` below
 
 
 """"""""""""""
@@ -225,6 +222,11 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
 call plug#end()
+
+try
+	colorscheme solarized
+catch
+endtry
 
 " Make guake transparent
 hi Normal ctermbg=none
