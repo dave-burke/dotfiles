@@ -18,7 +18,9 @@ endif
 
 set nocompatible
 
-" Configure vim-plug
+""""""""""""""""""""""
+" Configure vim-plug "
+""""""""""""""""""""""
 
 " Install if missing
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -26,47 +28,36 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-call plug#begin()
-" The default plugin directory will be ~/.vim/plugged
-let g:plug_timeout=300
 
-" Make sure you use single quotes
+call plug#begin() " The default plugin directory will be ~/.vim/plugged
 
-" Gutter
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
+" Make sure you use single quotes around plugin names
 
-" Misc
-Plug 'altercation/vim-colors-solarized'
-Plug 'gioele/vim-autoswap'
-Plug 'jszakmeister/vim-togglecursor'
-Plug 'kien/ctrlp.vim'
-Plug 'mbbill/undotree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-sensible'
+Plug 'gioele/vim-autoswap' " Automatically deals with swap files when you open a buffer
+Plug 'scrooloose/nerdcommenter' " <leader>cc to comment line/selection
+Plug 'tpope/vim-sleuth' " Auto-detects whitespace (e.g. tabs vs spaces) of a file/project
+Plug 'tpope/vim-sensible' " A bunch of sensible defaults
 if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
-Plug 'editorconfig/editorconfig-vim'
-Plug 'luochen1990/rainbow'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim' " Recognize editorconfig
+Plug 'tpope/vim-fugitive' " Git integration
+Plug 'tpope/vim-surround' " Keymappings for surrounding with e.g. quotes or brackets
 
 " Filetype support
 Plug 'freitass/todo.txt-vim'
-Plug 'ledger/vim-ledger'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'rodjek/vim-puppet'
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace' " For Clojure
 Plug 'udalov/kotlin-vim'
 Plug 'vim-scripts/groovy.vim'
 
-call plug#end()
 
+"""""""""""""""""""""""""
+" Solarized Colorscheme "
+"""""""""""""""""""""""""
+Plug 'altercation/vim-colors-solarized'
 " Solarized config
 set t_Co=256
 set hlsearch
@@ -76,16 +67,34 @@ try
 catch
 endtry
 
-" Make guake transparent
-hi Normal ctermbg=none
-highlight NonText ctermbg=none
 
+""""""""""""""
+" Git Gutter "
+""""""""""""""
+Plug 'airblade/vim-gitgutter'
 " gitgutter config
 set updatetime=250
 
+"
+"""""""""""
+" Airline "
+"""""""""""
+Plug 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+
+
+"""""""""""
+" Rainbow "
+"""""""""""
+Plug 'luochen1990/rainbow'
 " rainbow config
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
+
+""""""""""
+" Ledger "
+""""""""""
+Plug 'ledger/vim-ledger'
 " ledger-vim config
 let g:ledger_bin='hledger'
 "autocmd FileType ledger setlocal omnifunc=ledger#complete#omnifunc
@@ -101,9 +110,11 @@ au FileType ledger noremap <leader>a :LedgerAlignBuffer<CR>
 let g:ledger_align_at = 40
 let g:ledger_default_commodity = '$'
 
-" Airline config
-let g:airline#extensions#tabline#enabled = 1
 
+"""""""""""""""""
+" Toggle Cursor "
+"""""""""""""""""
+Plug 'jszakmeister/vim-togglecursor'
 " Toggle cursor config
 " Extend to fix mintty cursor in cygwin
 if !has('gui') && has('unix') && $OS == "Windows_NT"
@@ -116,6 +127,11 @@ if !has('gui') && has('unix') && $OS == "Windows_NT"
 	let &t_te.="\e[5 q" " t_te = out of 'termcap' mode (close vim)
 endif
 
+
+""""""""""
+" CTRL-P "
+""""""""""
+Plug 'kien/ctrlp.vim'
 " ctrlp config
 let g:ctrlp_root_markers = ['.gitignore']
 let g:ctrlp_custom_ignore = {
@@ -123,10 +139,20 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\v\.(class|exe|dll|zip)$',
 	\}
 
+
+"""""""""""""
+" Undo Tree "
+"""""""""""""
+Plug 'mbbill/undotree'
 " Undotree config
 " CTRL-U is 'scroll up' by default and I never use that.
 nnoremap <C-u> :UndotreeToggle<cr>
 
+
+""""""""""""
+" NERDTree "
+""""""""""""
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " NERDTree config
 " Open NERDTree when vim starts with no file specified
 "autocmd StdinReadPre * let s:std_in=1
@@ -134,10 +160,11 @@ nnoremap <C-u> :UndotreeToggle<cr>
 " Open NERDTree with Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
 
-set statusline+=%#warningmsg#
-set statusline+=%{coc#status()}
-set statusline+=%*
 
+"""""""""""""""""""""""""""""""
+" Conquer of Completion (COC) "
+"""""""""""""""""""""""""""""""
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " CoC config
 let g:coc_global_extensions = [
 	\'coc-clojure',
@@ -196,7 +223,18 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-""" END Coc Config """
+
+call plug#end()
+
+" Make guake transparent
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" Statusline
+set statusline+=%#warningmsg#
+set statusline+=%{coc#status()}
+set statusline+=%*
+
 
 " backup/undo/swap
 if has("vms")
