@@ -45,6 +45,7 @@ Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sensible'
 if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
@@ -68,7 +69,6 @@ call plug#end()
 
 " Solarized config
 set t_Co=256
-syntax enable
 set hlsearch
 set background=dark
 try
@@ -102,7 +102,6 @@ let g:ledger_align_at = 40
 let g:ledger_default_commodity = '$'
 
 " Airline config
-set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 
 " Toggle cursor config
@@ -199,9 +198,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 """ END Coc Config """
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
 " backup/undo/swap
 if has("vms")
 	set nobackup		" do not keep a backup file, use versions instead
@@ -215,10 +211,7 @@ if has("undofile")
 endif
 set directory=$VIMFILES/swap/
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
 set ignorecase		" make searches case insensitive...
 set smartcase		" unless the search pattern contains a capital letter
 
@@ -267,9 +260,6 @@ cabbrev sbk leftabove split
 nmap <leader>sbl :rightbelow vnew<CR> "Split window right
 cabbrev sbl rightbelow vsplit
 
-" CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo, so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
 	set mouse=a
@@ -315,8 +305,6 @@ if has("autocmd")
 
 endif " has("autocmd")
 
-set autoindent		" always set autoindenting on
-
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -334,8 +322,6 @@ if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
   endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
@@ -355,7 +341,6 @@ autocmd InsertLeave * :set relativenumber
 set relativenumber
 
 set cursorline "highlight current line
-set wildmenu "visual autocomplete for command menu
 
 if !exists(":Txml")
 	command Txml set ft=xml | execute "%!tidy -q -i -xml -wrap 150"
