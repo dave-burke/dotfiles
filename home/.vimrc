@@ -20,8 +20,6 @@ if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
   endif
-  "setglobal bomb
-  set fileencodings=ucs-bom,utf-8,latin1
 endif
 
 set nocompatible
