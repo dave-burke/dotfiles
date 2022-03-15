@@ -49,9 +49,10 @@ if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
 Plug 'editorconfig/editorconfig-vim'
+Plug 'luochen1990/rainbow'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Filetype support
 Plug 'freitass/todo.txt-vim'
@@ -81,6 +82,9 @@ highlight NonText ctermbg=none
 
 " gitgutter config
 set updatetime=250
+
+" rainbow config
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " ledger-vim config
 let g:ledger_bin='hledger'
