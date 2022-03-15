@@ -44,9 +44,11 @@ Plug 'kien/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-sleuth'
 if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
+Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -192,19 +194,6 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 """ END Coc Config """
-
-" Configure tabs
-set noexpandtab
-set copyindent
-set preserveindent
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
-
-" Capitulate to the collective insanity of the js community
-if has("autocmd")
-	autocmd Filetype javascript,json,vue,html,yaml setlocal expandtab softtabstop=2 shiftwidth=2 tabstop=2
-endif
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
