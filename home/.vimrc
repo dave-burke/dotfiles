@@ -11,12 +11,6 @@ if has('win32') || has('win64')
 	let $VIMFILES=expand("$SystemDrive//Users/$USERNAME/vimfiles")
 endif
 
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-endif
-
 set nocompatible
 
 """"""""""""""""""""""
@@ -251,6 +245,13 @@ set so=14
 if has('mouse')
 	set mouse=a
 endif
+
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+endif
+
 
 """""""""""""
 " Clipboard "
