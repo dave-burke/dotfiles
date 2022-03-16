@@ -42,6 +42,7 @@ if !has('gui') | Plug 'jamessan/vim-gnupg' | endif
 
 " Code
 Plug 'editorconfig/editorconfig-vim' " Recognize editorconfig
+Plug 'jiangmiao/auto-pairs' " Autocomplete pairs of parens, brackets, quotes, etc.
 Plug 'tpope/vim-fugitive' " Git integration
 Plug 'tpope/vim-surround' " Keymappings for surrounding with e.g. quotes or brackets
 
