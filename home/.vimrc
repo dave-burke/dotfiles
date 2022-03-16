@@ -13,6 +13,7 @@ endif
 
 set nocompatible
 
+
 """"""""""""""""""""""
 " Configure vim-plug "
 """"""""""""""""""""""
@@ -68,7 +69,7 @@ Plug 'airblade/vim-gitgutter'
 " gitgutter config
 set updatetime=250
 
-"
+
 """""""""""
 " Airline "
 """""""""""
@@ -226,6 +227,7 @@ try
 catch
 endtry
 
+
 """""""""""""""""""""""""
 " Miscelaneous settings "
 """""""""""""""""""""""""
@@ -261,6 +263,7 @@ if has("unix")
 else
 	set clipboard=unnamed "use windows clipboard
 endif
+
 
 """"""""""""""""""""
 " backup/undo/swap "
@@ -334,6 +337,7 @@ cabbrev sbl rightbelow vsplit
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
 
 """""""""""""""
 " Misc Tweaks "
