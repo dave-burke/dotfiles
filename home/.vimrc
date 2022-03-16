@@ -11,11 +11,6 @@ if has('win32') || has('win64')
 	let $VIMFILES=expand("$SystemDrive//Users/$USERNAME/vimfiles")
 endif
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-	finish
-endif
-
 if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
