@@ -26,6 +26,11 @@
 [pretty]
 	lol = "format:%C(auto)%h %d %s %Cgreen%ad %Cblueby %an"
 [alias]
+	# Figure out what this repo calls the main branch.
+	main = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+
+	master2main = !git checkout master && git branch -m master main && git fetch && git branch --unset-upstream && git branch -u origin/main && remote set-head origin --auto
+
 	# Display a pretty log
 	lol = log --pretty=lol --date=relative
 
@@ -33,7 +38,7 @@
 	l = !git lol --graph --branches --tags --remotes
 
 	# Show only logs back to master branch
-	lm = !git lol master..
+	lm = !git lol $(git main)..
 
 	# Show only logs back to upstream branch
 	lu = !git lol @{upstream}..
@@ -91,16 +96,16 @@
 	jbm = merge --no-ff -m
 
 	# "Merge into Master"
-	mm = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git merge --no-ff ${ORIG_BRANCH} && git push && git branch -D ${ORIG_BRANCH} && git push origin :${ORIG_BRANCH}"
+	mm = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout $(git main) && git pull && git merge --no-ff ${ORIG_BRANCH} && git push && git branch -D ${ORIG_BRANCH} && git push origin :${ORIG_BRANCH}"
 
 	# "Merge into Master Fast-Forward"
-	mmff = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git merge --ff-only ${ORIG_BRANCH} && git push && git branch -D ${ORIG_BRANCH} && git push origin :${ORIG_BRANCH}"
+	mmff = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout $(git main) && git pull && git merge --ff-only ${ORIG_BRANCH} && git push && git branch -D ${ORIG_BRANCH} && git push origin :${ORIG_BRANCH}"
 
 	# Push the current branch upstream
 	pushnew = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 
 	# Prune local merged branches
-	localprune = !git branch --no-color --merged master | grep -v master | xargs -r git branch -d
+	localprune = !git branch --no-color --merged $(git main) | grep -v $(git main) | xargs -r git branch -d
 
 	# Shorthand for diff. Shows what has changed, but is *not* staged for commit.
 	d = diff
@@ -112,16 +117,16 @@
 	rbu = rebase -i @{upstream}
 
 	# "ReBase master" to clean up history before merging into master.
-	rbm = rebase -i master
+	rbm = rebase -i $(git main)
 
 	# "Pull Master and Rebase" to rebase your branch on master
-	pmr = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git rebase master ${ORIG_BRANCH}"
+	pmr = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout $(git main) && git pull && git rebase $(git main) ${ORIG_BRANCH}"
 
 	# Pull Master from another branch
-	pm = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git pull && git checkout ${ORIG_BRANCH}"
+	pm = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout $(git main) && git pull && git checkout ${ORIG_BRANCH}"
 
 	# Pull Master and Prune
-	pmp = !git checkout master && git pull && git localprune
+	pmp = !git checkout $(git main) && git pull && git localprune
 
 	# Force push with lease
 	pushf = push --force-with-lease
