@@ -38,7 +38,7 @@ addPath "${HOME}/bin"
 addPath "${HOME}/.local/bin"
 addPath "${HOME}/.local/share/npm-packages/bin"
 addPath "/opt/bin"
-if command -v > /dev/null; then
+if command -v ruby > /dev/null; then
 	addPath "$(ruby -e 'puts Gem.user_dir')/bin"
 fi
 
