@@ -118,7 +118,7 @@
 	rbu = rebase -i @{upstream}
 
 	# "ReBase master" to clean up history before merging into master.
-	rbm = rebase -i $(git main)
+	rbm = !git rebase -i $(git main)
 
 	# "Pull Master and Rebase" to rebase your branch on master
 	pmr = "!ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout $(git main) && git pull && git rebase $(git main) ${ORIG_BRANCH}"
