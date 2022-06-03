@@ -52,7 +52,7 @@
 	review = log -p --reverse
 
 	# Shortcut for 'status'
-	s = !git status --short --branch && git ls-files -v | grep "^h"
+	s = !git status --short --branch && git ls-files -v | grep "^[a-z]"
 
 	# "Overview" -- Show recent logs and workspace status
 	o = "!git l10; git s; git stash list"
