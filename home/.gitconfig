@@ -26,11 +26,14 @@
 [pretty]
 	lol = "format:%C(auto)%h %d %s %Cgreen%ad %Cblueby %an"
 [alias]
+	# Fixes "fatal: ref refs/remotes/origin/HEAD is not a symbolic ref"
+	fixheadref = remote set-head origin --auto
+
 	# Figure out what this repo calls the main branch.
 	main = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 
 	# Run this after a remote repo renames its master branch to 'main' (although it should work for any new branch name)
-	master2main = !git remote set-head origin --auto && git branch -m master $(git main) && git checkout $(git main) && git fetch origin && git branch -u origin/$(git main)
+	master2main = !git fixheadref && git branch -m master $(git main) && git checkout $(git main) && git fetch origin && git branch -u origin/$(git main)
 
 	# Display a pretty log
 	lol = log --pretty=lol --date=relative
