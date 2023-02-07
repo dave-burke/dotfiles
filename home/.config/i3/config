@@ -310,8 +310,9 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker i3lock
-exec --no-startup-id ~/.fehbg
+exec --no-startup-id xautolock -time 59 -locker 'dm-tool switch-to-greeter'
+#exec --no-startup-id xautolock -time 10 -locker i3lock
+exec --no-startup-id ~/.local/bin/fehbg
 #exec_always --no-startup-id ff-theme-util
 #exec_always --no-startup-id fix_xcursor
 
