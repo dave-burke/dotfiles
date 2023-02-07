@@ -135,6 +135,8 @@
 	# Force push with lease
 	pushf = push --force-with-lease
 
+	pr = !xdg-open `git remote get-url origin | sed 's|com:|com/|' | sed 's|git@|https://|' | sed 's|\\.git||'`/pull/new/$(git rev-parse --abbrev-ref HEAD)
+
 	# Reset to wherever HEAD was prior to the last command, to recover from a mistake.
 	back = reset --hard HEAD@{1}
 
