@@ -147,3 +147,5 @@
 [credential]
 	username = dave-burke
 	helper = cache
+[init]
+	defaultBranch = main
