@@ -10,6 +10,11 @@ set -o vi
 # Allow forward command searching via CTRL-S
 [[ $- == *=* ]] && stty --ixon
 
+# Use direnv if available
+if command -v direnv > /dev/null; then
+	eval "$(direnv hook bash)"
+fi
+
 # Keep dirs stack from getting too big
 autopop(){
 	while [[ $(dirs -p | wc -l) -gt $1 ]]; do

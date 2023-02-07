@@ -46,6 +46,11 @@ unfunction zkbd_file; unset keyfile ret
 #Set prompt
 PROMPT="%n@%M:%3~%# " RPROMPT="%? @ %T"
  
+# Use direnv if available
+if command -v direnv > /dev/null; then
+	eval "$(direnv hook zsh)"
+fi
+
 #Manage dir history
 setopt autopushd pushdminus pushdsilent pushdtohome
 
