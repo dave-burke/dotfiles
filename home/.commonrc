@@ -16,6 +16,7 @@ fi
 # SSH Agent
 if command -v ssh-agent > /dev/null; then
 	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+		rm -f "$XDG_RUNTIME_DIR/ssh-agent.env"
 		ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
 	fi
 	if [[ ! "$SSH_AUTH_SOCK" || ! "$SSH_AGENT_PID" ]]; then
