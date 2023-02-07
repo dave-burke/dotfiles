@@ -101,7 +101,7 @@ au FileType ledger noremap } /^\d<CR>
 au FileType ledger vnoremap <silent> <Tab> :LedgerAlign<CR>
 " Align buffer with <leader>a
 au FileType ledger noremap <leader>a :LedgerAlignBuffer<CR>
-let g:ledger_align_at = 40
+let g:ledger_align_at = 50
 let g:ledger_default_commodity = '$'
 
 
