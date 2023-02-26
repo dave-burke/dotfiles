@@ -270,7 +270,7 @@ alias dps="docker ps -a --format '{{.ID}}~{{.Names}}~{{.Image}}~{{.Status}}' | c
 
 # GPG doesn't list keys in your keyring for some reason.
 alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
- 
+
 #for gnu screen
 function s {
 	if [[ -z $1 ]]; then
@@ -299,6 +299,9 @@ if command -v bat > /dev/null; then
 fi
 if command -v nvim > /dev/null; then
 	alias vim=nvim
+fi
+if command -v mosh > /dev/null; then
+        alias ssh=mosh
 fi
 
 [[ -f ~/.localrc ]] && source ~/.localrc
