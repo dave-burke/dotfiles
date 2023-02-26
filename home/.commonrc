@@ -297,6 +297,9 @@ function t {
 if command -v bat > /dev/null; then
 	alias cat=bat
 fi
+if command -v nvim > /dev/null; then
+	alias vim=nvim
+fi
 
 [[ -f ~/.localrc ]] && source ~/.localrc
 
