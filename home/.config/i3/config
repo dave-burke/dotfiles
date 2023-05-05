@@ -76,7 +76,7 @@ bindsym $mod+Mod1+c exec code
 bindsym $mod+Mod1+s exec steam
 bindsym $mod+Mod1+g exec gimp
 bindsym $mod+Mod1+m exec makemkv
-bindsym $mod+Mod1+a exec pavucontrol
+bindsym $mod+Mod1+a exec pavucontrol -t 3
 bindsym $mod+F2 exec palemoon
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
