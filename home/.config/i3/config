@@ -259,7 +259,7 @@ bindsym $mod+a mode "$mode_audio"
 set $mode_audio (h)eadphones (s)peakers
 mode "$mode_audio" {
 
-    bindsym h exec --no-startup-id pactl set-default-sink alsa_output.usb-Logitech_Logitech_G930_Headset-00.iec958-stereo, mode "default"
+    bindsym h exec --no-startup-id pactl set-default-sink alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo, mode "default"
     bindsym s exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0f_00.4.analog-stereo, mode "default"
 
     # exit system mode: "Enter" or "Escape"
