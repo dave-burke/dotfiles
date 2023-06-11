@@ -1,11 +1,15 @@
 #!/bin/bash
 
-ITEM_NUM=${2}
-FIND=${3}
-REPLACE=${4}
+if [[ $1 == 'usage' ]]; then
+	echo "sed [ITEM_NUM] [FIND] [REPLACE]"
+	exit 0
+else
+	ITEM_NUM=${2}
+	FIND=${3}
+	REPLACE=${4}
 
-getTodo ${ITEM_NUM}
-todo="${todo#([A-Z]) }"
-todo="${todo/${FIND}/${REPLACE}}"
-todo.sh replace ${ITEM_NUM} "${todo}"
-
+	getTodo ${ITEM_NUM}
+	todo="${todo#([A-Z]) }"
+	todo="${todo/${FIND}/${REPLACE}}"
+	todo.sh replace ${ITEM_NUM} "${todo}"
+fi

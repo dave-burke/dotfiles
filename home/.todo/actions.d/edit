@@ -1,4 +1,9 @@
 #!/bin/bash
 
-${EDITOR} "${TODO_DIR}/todo.txt"
+if [[ $1 == 'usage' ]]; then
+	echo "edit"
+	exit 0
+else
+	${EDITOR} "${TODO_DIR}/todo.txt"
+fi
 
