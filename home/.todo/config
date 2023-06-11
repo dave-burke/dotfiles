@@ -3,7 +3,7 @@
 # Your todo.txt directory (this should be an absolute path)
 #export TODO_DIR="/Users/gina/Documents/todo"
 #export TODO_DIR=$(dirname "$0")
-export TODO_DIR="${HOME}/.todo"
+export TODO_DIR="${HOME}/docs/notes/todo"
 
 # Your todo/done/report.txt locations
 export TODO_FILE="$TODO_DIR/todo.txt"
@@ -11,7 +11,7 @@ export DONE_FILE="$TODO_DIR/done.txt"
 export REPORT_FILE="$TODO_DIR/report.txt"
 
 # You can customize your actions directory location
-export TODO_ACTIONS_DIR="$TODO_DIR/actions.d"
+export TODO_ACTIONS_DIR="${HOME}/.todo/actions.d"
 
 # == EDIT FILE LOCATIONS ABOVE ===
 
