@@ -149,3 +149,5 @@
 	helper = cache
 [init]
 	defaultBranch = main
+[protocol "file"]
+	allow = always
