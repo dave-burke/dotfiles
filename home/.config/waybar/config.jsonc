@@ -122,11 +122,13 @@
         "format-icons": ["", "", ""]
     },
     "cpu": {
-        "format": "{usage}% ",
+        "interval": 1,
+        "format": "{usage:2}% ",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "interval": 1,
+        "format": "{percentage:2}% "
     },
     "disk#root": {
         "path": "/",
@@ -173,7 +175,8 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "interval": 1,
+        "format-ethernet": "{ipaddr}/{cidr} ({bandwidthUpBytes:=10} {bandwidthDownBytes:=10}) ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
