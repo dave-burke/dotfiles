@@ -377,3 +377,5 @@ bindsym $mod+Shift+m bar mode toggle
 #
 # See $XDG_CONFIG_HOME/swayidle/config
 exec swayidle -w
+
+exec dunst # notification daemon
