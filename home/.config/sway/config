@@ -321,7 +321,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id xautolock -time 59 -locker 'dm-tool switch-to-greeter'
 #exec --no-startup-id xautolock -time 10 -locker i3lock
 #exec --no-startup-id ~/.local/bin/fehbg
-exec --no-startup-id swaybg --image "/usr/local/share/pixmaps/arch-welcom-home.png"
+exec --no-startup-id swaybg --image "$HOME/.local/share/backgrounds/current"
 #exec_always --no-startup-id ff-theme-util
 #exec_always --no-startup-id fix_xcursor
 
