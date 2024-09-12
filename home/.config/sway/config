@@ -1,3 +1,6 @@
+exec_always {
+    export GTK_USE_PORTAL=0
+}
 # i3 config file (v4)
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
