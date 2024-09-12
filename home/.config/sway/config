@@ -40,19 +40,19 @@ bindsym $mod+Return exec foot
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec rofi -show drun
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+z exec morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-#exec --no-startup-id volumeicon
+#exec volumeicon
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
+#exec pulseaudio
+#exec pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
@@ -74,12 +74,12 @@ bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+t exec pkill compton
+bindsym $mod+Ctrl+t exec compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec 'grim - | swappy -f -'
 bindsym $mod+Print exec 'grim -g "$(slurp)" - | swappy -f -'
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+Ctrl+x --release exec xkill
 bindsym $mod+period exec rofimoji
 
 # focus_follows_mouse no
@@ -254,8 +254,8 @@ set $mode_audio (h)eadphones (s)peakers
 bindsym $mod+a mode "$mode_audio"
 mode "$mode_audio" {
 
-    bindsym h exec --no-startup-id pactl set-default-sink alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo, mode "default"
-    bindsym s exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0f_00.4.analog-stereo, mode "default"
+    bindsym h exec pactl set-default-sink alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo, mode "default"
+    bindsym s exec pactl set-default-sink alsa_output.pci-0000_0f_00.4.analog-stereo, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -266,11 +266,11 @@ mode "$mode_audio" {
 set $mode_system (l)ock, (e)xit, (s)witch_user, (r)reboot, (Shift+s)hutdown
 mode "$mode_system" {
 
-    bindsym l exec --no-startup-id swaylock --color=444444, mode "default"
-    bindsym e exec --no-startup-id swaymsg exit, mode "default"
-    bindsym s exec --no-startup-id dm-tool switch-to-greeter, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym l exec swaylock --color=444444, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym s exec dm-tool switch-to-greeter, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -303,27 +303,27 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Lock screen
-#bindsym $mod+Ctrl+l exec --no-startup-id swaylock --color=444444
-bindsym $mod+Ctrl+l exec --no-startup-id dm-tool switch-to-greeter
+#bindsym $mod+Ctrl+l exec swaylock --color=444444
+bindsym $mod+Ctrl+l exec dm-tool switch-to-greeter
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
-#exec --no-startup-id nm-applet
-#exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id pamac-tray
-#exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-#exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-#exec --no-startup-id xautolock -time 59 -locker 'dm-tool switch-to-greeter'
-#exec --no-startup-id xautolock -time 10 -locker i3lock
-#exec --no-startup-id ~/.local/bin/fehbg
-exec --no-startup-id swaybg --image "$HOME/.local/share/backgrounds/current"
-#exec_always --no-startup-id ff-theme-util
-#exec_always --no-startup-id fix_xcursor
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec nitrogen --restore; sleep 1; compton -b
+#exec manjaro-hello
+#exec nm-applet
+#exec xfce4-power-manager
+#exec pamac-tray
+#exec clipit
+# exec blueman-applet
+# exec_always sbxkb
+#exec start_conky_maia
+# exec start_conky_green
+#exec xautolock -time 59 -locker 'dm-tool switch-to-greeter'
+#exec xautolock -time 10 -locker i3lock
+#exec ~/.local/bin/fehbg
+exec swaybg --image "$HOME/.local/share/backgrounds/current"
+#exec_always ff-theme-util
+#exec_always fix_xcursor
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
