@@ -380,3 +380,7 @@ bindsym $mod+Shift+m bar mode toggle
 exec swayidle -w
 
 exec dunst # notification daemon
+exec kdeconnectd
+exec kdeconnect-indicator
+exec steam -silent
+
