@@ -200,7 +200,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "$HOME/.config/waybar/toggle-audio.sh"
     },
     "custom/media": {
         "format": "{icon} {}",
