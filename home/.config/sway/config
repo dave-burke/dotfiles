@@ -384,6 +384,10 @@ exec kdeconnectd
 exec kdeconnect-indicator
 exec steam -silent
 
+# Without this, some X11 apps are broken
+# For example, the save dialog in simple-scan
+exec systemctl --user import-environment DISPLAY
+
 # Start with numlock enabled
 input type:keyboard xkb_numlock enabled
 
