@@ -46,6 +46,23 @@ if command -v yazi > /dev/null; then
 	}
 fi
 
+function dotfiles() {
+	# Define the git-dir and work-tree
+	local git_dir="$HOME/.dotfiles/"
+	local work_tree="$HOME"
+	local base_args="--git-dir=\"$git_dir\" --work-tree=\"$work_tree\""
+
+	# Check if the first argument is "add"
+	if [[ "$1" == "add" ]]; then
+		# Shift the first argument and prepend "-u" to the remaining arguments
+		shift
+		/usr/bin/git $base_args add -u "$@"
+	else
+		# Pass all arguments through for other commands
+		/usr/bin/git $base_args "$@"
+	fi
+}
+
 addPath "${HOME}/bin"
 addPath "${HOME}/.local/bin"
 addPath "${HOME}/.local/share/npm-packages/bin"
