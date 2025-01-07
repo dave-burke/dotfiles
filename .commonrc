@@ -52,10 +52,10 @@ function dotfiles() {
 	local work_tree="$HOME"
 
 	# Check if the first argument is "add"
-	if [[ "$1" == "add" ]]; then
+	if [[ "$1" == "add" && "$2" == "." ]]; then
 		# Shift the first argument and prepend "-u" to the remaining arguments
-		shift
-		/usr/bin/git --git-dir="$git_dir" --work-tree="$work_tree" add -u "$@"
+		shift 2
+		/usr/bin/git --git-dir="$git_dir" --work-tree="$work_tree" add -u . "$@"
 	else
 		# Pass all arguments through for other commands
 		/usr/bin/git --git-dir="$git_dir" --work-tree="$work_tree" "$@"
