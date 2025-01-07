@@ -18,7 +18,9 @@ echo '!/README.md' >> .dotfiles/info/sparse-checkout
 echo "Backing up conflicting files..."
 mkdir -p $HOME/.dotfiles-backup
 git checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | while read -r file; do
-  mv -v "$file" "$HOME/.dotfiles-backup/"
+  if [[ -f $file ]]; then
+    mv -v "$file" "$HOME/.dotfiles-backup/"
+  fi
 done
 git checkout
 
