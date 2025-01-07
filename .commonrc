@@ -14,7 +14,7 @@ if [[ -f ~/.dir_colors ]]; then
 fi
 
 # SSH Agent
-if command -v ssh-agent > /dev/null; then
+if command -v ssh-agent > /dev/null && command -v pgrep > /dev/null; then
 	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
 		rm -f "$XDG_RUNTIME_DIR/ssh-agent.env"
 		ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
