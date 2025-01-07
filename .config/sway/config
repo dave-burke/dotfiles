@@ -305,7 +305,9 @@ bindsym $mod+r mode "resize"
 
 # Lock screen
 #bindsym $mod+Ctrl+l exec swaylock --color=444444
-bindsym $mod+Ctrl+l exec dm-tool switch-to-greeter
+#bindsym $mod+Ctrl+l exec dm-tool switch-to-greeter
+bindsym $mod+Ctrl+l exec --no-startup-id \
+    bash -c 'if pgrep -x "lightdm" > /dev/null; then dm-tool switch-to-greeter; else swaylock --color=444444; fi'
 
 # Autostart applications
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
