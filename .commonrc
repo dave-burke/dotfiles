@@ -55,15 +55,16 @@ function dotfiles() {
 	if [[ -x /usr/bin/git ]]; then
 		git_cmd=/usr/bin/git
 	elif [[ -x /mingw64/bin/git ]]; then
-		git_cmd=/migw64/bin/git
+		git_cmd=/mingw64/bin/git
 	fi
 
 
 	# Check if the first argument is "add"
-	if [[ "$1" == "add" && "$2" == "." ]]; then
+	if [[ "$1" == "add" && -d "${2}" ]]; then
 		# Shift the first argument and prepend "-u" to the remaining arguments
+		local dir="${2}"
 		shift 2
-		$git_cmd --git-dir="$git_dir" --work-tree="$work_tree" add -u . "$@"
+		$git_cmd --git-dir="$git_dir" --work-tree="$work_tree" add -u "${dir}" "$@"
 	else
 		# Pass all arguments through for other commands
 		$git_cmd --git-dir="$git_dir" --work-tree="$work_tree" "$@"
