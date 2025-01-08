@@ -24,6 +24,12 @@ if command -v ssh-agent > /dev/null && command -v pgrep > /dev/null; then
 	fi
 fi
 
+# Force pinentry to prompt via tty in ssh
+export GPG_TTY=$(tty)
+if [[ -n "$SSH_CONNECTION" ]] ;then
+    export PINENTRY_USER_DATA="USE_CURSES=1"
+fi
+
 # Paths
 function addPath {
 	local newPath="${1}"
@@ -43,6 +49,21 @@ if command -v yazi > /dev/null; then
 			builtin cd -- "$cwd"
 		fi
 		rm -f -- "$tmp"
+	}
+fi
+
+if command -v mutt > /dev/null; then
+	function muttf() {
+		if [[ $# == 0 ]]; then
+			mutt
+		else
+			local config="${HOME}/.config/mutt/muttrc_${1}"
+			if [[ -r "${config}" ]]; then
+				mutt -F "${config}"
+			else
+				echo "Invalid config: ${config}. No file or no access."
+			fi
+		fi
 	}
 fi
 
