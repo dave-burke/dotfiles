@@ -17,11 +17,11 @@ echo '!/README.md' >> .dotfiles/info/sparse-checkout
 
 echo "Backing up conflicting files..."
 mkdir -p $HOME/.dotfiles-backup
-git checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | while read -r file; do
+git checkout 2>&1 | grep -E "\s+\." | awk '{print $2}' | while read -r file; do
   if [[ -f $file ]]; then
     mv -v "$file" "$HOME/.dotfiles-backup/"
   fi
 done
-git checkout
+git checkout .
 
 echo "Done. Don't forget to source .bashrc or .zshrc"
