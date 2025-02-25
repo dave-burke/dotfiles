@@ -132,11 +132,11 @@
     },
     "disk#root": {
         "path": "/",
-        "format": "{path} {free}%"
+        "format": "{path} {free}"
     },
     "disk#home": {
         "path": "/home",
-        "format": "~ {free}%"
+        "format": "~ {free}"
     },
     "backlight": {
         // "device": "acpi_video1",
