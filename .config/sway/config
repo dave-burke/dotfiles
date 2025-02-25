@@ -382,5 +382,8 @@ exec kdeconnect-indicator
 exec steam -silent
 
 # Start with numlock enabled
-input type:keyboard xkb_numlock enabled
+input "type:keyboard" {
+    xkb_numlock enabled
+    xkb_options "caps:backspace"
+}
 
