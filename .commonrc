@@ -8,11 +8,6 @@ alias dh='dirs -v'
 #Midnight Commander skin
 export MC_SKIN="$HOME/.config/mc/lib/mc-solarized-skin/solarized.ini"
 
-#Colors
-if [[ -f ~/.dir_colors ]]; then
-	eval `dircolors ~/.dir_colors`
-fi
-
 # SSH Agent
 if command -v ssh-agent > /dev/null && command -v pgrep > /dev/null; then
 	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
