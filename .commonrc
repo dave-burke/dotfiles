@@ -19,6 +19,11 @@ if command -v ssh-agent > /dev/null && command -v pgrep > /dev/null; then
 	fi
 fi
 
+if command -v lesspipe.sh > /dev/null; then
+	LESSOPEN="|lesspipe.sh %s"
+	export LESSOPEN
+fi
+
 # Force pinentry to prompt via tty in ssh
 export GPG_TTY=$(tty)
 if [[ -n "$SSH_CONNECTION" ]] ;then
