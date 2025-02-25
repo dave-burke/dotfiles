@@ -364,6 +364,13 @@ bindsym $mod+Shift+m bar mode toggle
 
   client.background       #2B2C2B
 
+# Without this, some X11 apps are broken
+# For example, the save dialog in simple-scan
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+# This is required to get screen sharing to work in Firefox
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 ## Idle config
 #
 # See $XDG_CONFIG_HOME/swayidle/config
@@ -373,10 +380,6 @@ exec dunst # notification daemon
 exec kdeconnectd
 exec kdeconnect-indicator
 exec steam -silent
-
-# Without this, some X11 apps are broken
-# For example, the save dialog in simple-scan
-exec systemctl --user import-environment DISPLAY
 
 # Start with numlock enabled
 input type:keyboard xkb_numlock enabled
