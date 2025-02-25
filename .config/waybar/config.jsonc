@@ -192,6 +192,7 @@
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
+            "alsa_output.usb-Macronix_Razer_Barracuda_X_2.4_1234-00.analog-stereo": "",
             "headphone": "",
             "hands-free": "",
             "headset": "",
@@ -200,6 +201,7 @@
             "car": "",
             "default": ["", "", ""]
         },
+        "on-click-right": "pavucontrol -t 3",
         "on-click": "$HOME/.config/waybar/toggle-audio.sh"
     },
     "custom/media": {

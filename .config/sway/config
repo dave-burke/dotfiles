@@ -48,18 +48,6 @@ bindsym $mod+d exec rofi -show drun
 # launch categorized menu
 bindsym $mod+z exec morc_menu
 
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-#exec volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec pulseaudio
-#exec pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
-
-################################################################################################
-
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "/home/dave/bin/brightness.sh up; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "/home/dave/bin/brightness.sh down; notify-send 'brightness down'"
@@ -255,7 +243,7 @@ set $mode_audio (h)eadphones (s)peakers
 bindsym $mod+a mode "$mode_audio"
 mode "$mode_audio" {
 
-    bindsym h exec pactl set-default-sink alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo, mode "default"
+    bindsym h exec pactl set-default-sink alsa_output.usb-Macronix_Razer_Barracuda_X_2.4_1234-00.analog-stereo, mode "default"
     bindsym s exec pactl set-default-sink alsa_output.pci-0000_0f_00.4.analog-stereo, mode "default"
 
     # exit system mode: "Enter" or "Escape"
