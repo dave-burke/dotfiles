@@ -54,6 +54,8 @@ fi
 
 if command -v mutt > /dev/null; then
 	function muttf() {
+		# Move to Downloads so that attachments are saved there
+		pushd "${HOME}/Downloads"
 		if [[ $# == 0 ]]; then
 			mutt
 		else
@@ -64,6 +66,7 @@ if command -v mutt > /dev/null; then
 				echo "Invalid config: ${config}. No file or no access."
 			fi
 		fi
+		popd
 	}
 fi
 
