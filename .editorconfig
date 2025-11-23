@@ -65,6 +65,12 @@ indent_style = space
 indent_size = 4
 indent_style = tab
 
+# Lua
+# http://lua-users.org/wiki/LuaStyleGuide
+[*.{lua,luacheckrc}]
+indent_size = 2
+indent_style = space
+
 # Python
 # https://www.python.org/dev/peps/pep-0008/#code-lay-out
 [*.py]
