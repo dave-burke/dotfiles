@@ -34,6 +34,7 @@ bindsym $mod+n border normal
 font pango:xft:SauceCodePro NFM SemiBold 10
 
 # Use Mouse+$mod to drag floating windows
+# or Mouse2+$mod to resize
 floating_modifier $mod
 
 # start a terminal
@@ -118,7 +119,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -230,6 +231,7 @@ for_window [app_id="foot"] title_format "terminal"
 for_window [app_id="firefox" title="Extension: \(Bitwarden Password Manager\) - Bitwarden — Mozilla Firefox"] floating enable
 #for_window [class="steam" title="Friends List"] floating enable border normal resize set width 200px height 800px move absolute position 0px 0px
 for_window [shell="xwayland"] title_format "[X] %title"
+for_window [title="\d+ reminder"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
