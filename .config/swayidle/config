@@ -1,1 +1,14 @@
-timeout 1200 'dm-tool switch-to-greeter'
+# Lock after 15 minutes
+timeout 900 'swaylock -f'
+
+# Turn off displays after 30 minutes (doesn't resume correctly)
+# timeout 1800 'swaymsg "output * dpms off"'
+
+# Go to sleep after 2 hours
+timeout 7200 'systemctl suspend'
+
+# Turn displays back on when activity resumes
+# resume 'swaymsg "output * dpms on"'
+
+# Lock immediately before suspend
+before-sleep 'swaylock -f'

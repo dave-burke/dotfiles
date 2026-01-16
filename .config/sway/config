@@ -258,7 +258,7 @@ mode "$mode_audio" {
 set $mode_system (l)ock, (e)xit, (s)witch_user, (r)reboot, (Shift+s)hutdown
 mode "$mode_system" {
 
-    bindsym l exec swaylock --color=444444, mode "default"
+    bindsym l exec swaylock, mode "default"
     bindsym e exec swaymsg exit, mode "default"
     bindsym s exec dm-tool switch-to-greeter, mode "default"
     bindsym r exec systemctl reboot, mode "default"
