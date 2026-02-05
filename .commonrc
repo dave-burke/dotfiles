@@ -1,7 +1,7 @@
 # Set default editor
-if command -v nvim > /dev/null; then
+if command -v nvim >/dev/null; then
 	export EDITOR=nvim
-elif command -v vim > /dev/null; then
+elif command -v vim >/dev/null; then
 	export EDITOR=vim
 fi
 
@@ -13,25 +13,25 @@ alias dh='dirs -v'
 export MC_SKIN="$HOME/.config/mc/lib/mc-solarized-skin/solarized.ini"
 
 # SSH Agent
-if command -v ssh-agent > /dev/null && command -v pgrep > /dev/null; then
-	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+if command -v ssh-agent >/dev/null && command -v pgrep >/dev/null; then
+	if ! pgrep -u "$USER" ssh-agent >/dev/null; then
 		rm -f "$XDG_RUNTIME_DIR/ssh-agent.env"
-		ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+		ssh-agent >"$XDG_RUNTIME_DIR/ssh-agent.env"
 	fi
 	if [[ ! "$SSH_AUTH_SOCK" || ! "$SSH_AGENT_PID" ]]; then
-		eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
+		eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" >/dev/null
 	fi
 fi
 
-if command -v lesspipe.sh > /dev/null; then
+if command -v lesspipe.sh >/dev/null; then
 	LESSOPEN="|lesspipe.sh %s"
 	export LESSOPEN
 fi
 
 # Force pinentry to prompt via tty in ssh
 export GPG_TTY=$(tty)
-if [[ -n "$SSH_CONNECTION" ]] ;then
-    export PINENTRY_USER_DATA="USE_CURSES=1"
+if [[ -n "$SSH_CONNECTION" ]]; then
+	export PINENTRY_USER_DATA="USE_CURSES=1"
 fi
 
 # Paths
@@ -45,7 +45,7 @@ function addPath {
 	fi
 }
 
-if command -v yazi > /dev/null; then
+if command -v yazi >/dev/null; then
 	function y() {
 		local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 		yazi "$@" --cwd-file="$tmp"
@@ -56,7 +56,7 @@ if command -v yazi > /dev/null; then
 	}
 fi
 
-if command -v mutt > /dev/null; then
+if command -v mutt >/dev/null; then
 	function muttf() {
 		# Move to Downloads so that attachments are saved there
 		pushd "${HOME}/Downloads"
@@ -86,7 +86,6 @@ function dotfiles() {
 		git_cmd=/mingw64/bin/git
 	fi
 
-
 	# Check if the first argument is "add"
 	if [[ "$1" == "add" && -d "${2}" ]]; then
 		# Shift the first argument and prepend "-u" to the remaining arguments
@@ -103,13 +102,13 @@ addPath "${HOME}/bin"
 addPath "${HOME}/.local/bin"
 addPath "${HOME}/.local/share/npm-packages/bin"
 addPath "/opt/bin"
-if command -v ruby > /dev/null; then
+if command -v ruby >/dev/null; then
 	export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 	addPath "${GEM_HOME}/bin"
 fi
 
 if [ -z "${JAVA_HOME}" ]; then
-	if [ -s "/usr/lib/jvm/default" -a -z "${JAVA_HOME}" ] ; then
+	if [ -s "/usr/lib/jvm/default" -a -z "${JAVA_HOME}" ]; then
 		export JAVA_HOME="/usr/lib/jvm/default"
 	fi
 fi
@@ -117,7 +116,7 @@ fi
 export CDPATH="${CDPATH:-.}:/run/media/${USER}:${HOME}"
 
 #Functions
-if ! command -v watch > /dev/null; then
+if ! command -v watch >/dev/null; then
 	# Implement a simple replacement
 	function watch {
 		if ! command -v ${1}; then
@@ -199,11 +198,11 @@ function up {
 	local saved="$(pwd)"
 	local dir
 	#pushd "${saved}" >> /dev/null
-	if command -v unsetopt >> /dev/null; then
+	if command -v unsetopt >>/dev/null; then
 		unsetopt autopushd
 	fi
 	if [[ "${target}" =~ ^[0-9]+$ ]]; then
-		for i in `seq -s ' ' 1 ${target}`; do
+		for i in $(seq -s ' ' 1 ${target}); do
 			builtin cd ..
 		done
 	else
@@ -216,14 +215,14 @@ function up {
 			if [[ "${dir}" == "/" ]]; then
 				echo "Could not find parent directory '${target}'"
 				builtin cd "${saved}"
-				break;
+				break
 			fi
 			builtin cd ..
 			dir="$(pwd)"
 		done
 	fi
-	pushd . >> /dev/null
-	if command -v setopt >> /dev/null; then
+	pushd . >>/dev/null
+	if command -v setopt >>/dev/null; then
 		setopt autopushd
 	fi
 }
@@ -243,7 +242,7 @@ function down {
 
 alias cprv='rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress --'
 function cpv {
-	command -v pv > /dev/null
+	command -v pv >/dev/null
 	if [[ $? -ne 0 ]]; then
 		rsync --recursive --perms --owner --group --backup-dir=/tmp/rsync --rsh /dev/null --human-readable --progress -- $@
 	else
@@ -281,7 +280,7 @@ function cpv {
 					if [[ -e "${target}" ]]; then
 						echo "target exists: '${target}'"
 					else
-						pv -N "${a}" "${a}" > "${target}"
+						pv -N "${a}" "${a}" >"${target}"
 						if [[ $? -eq 0 ]]; then
 							chmod --reference "${a}" "${target}"
 							chown --reference "${a}" "${target}"
@@ -295,7 +294,7 @@ function cpv {
 	fi
 }
 
-command -v tree > /dev/null || alias tree='find -not -name ".*"'
+command -v tree >/dev/null || alias tree='find -not -name ".*"'
 
 function scpv {
 	local output="${@: -1}"
@@ -316,7 +315,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 #Aliases
-command -v truecrypt > /dev/null || alias truecrypt=realcrypt
+command -v truecrypt >/dev/null || alias truecrypt=realcrypt
 alias ls='ls --color=auto'
 alias l='ls'
 alias la='ls -a'
@@ -341,9 +340,9 @@ alias gpg-recipients='gpg --list-only --no-default-keyring --secret-keyring /dev
 #for gnu screen
 function s {
 	if [[ -z $1 ]]; then
-		screen -ls 2> /dev/null || echo "[No sessions]"
+		screen -ls 2>/dev/null || echo "[No sessions]"
 	else
-		screen -r $@ 2> /dev/null || screen -S $@
+		screen -r $@ 2>/dev/null || screen -S $@
 	fi
 }
 
@@ -351,9 +350,9 @@ function s {
 alias tmux='tmux -2' #Use 256 colors
 function t {
 	if [[ -z $1 ]]; then
-		tmux ls 2> /dev/null || echo "[No sessions]"
+		tmux ls 2>/dev/null || echo "[No sessions]"
 	else
-		tmux attach -t $@ 2> /dev/null
+		tmux attach -t $@ 2>/dev/null
 		if [[ $? -ne 0 ]]; then
 			tmux new -s $@
 		fi
@@ -361,15 +360,14 @@ function t {
 }
 
 # Use nice utilities if you have them
-if command -v bat > /dev/null; then
+if command -v bat >/dev/null; then
 	alias cat=bat
 fi
-if command -v nvim > /dev/null; then
+if command -v nvim >/dev/null; then
 	alias vim=nvim
 fi
-if command -v mosh > /dev/null; then
-        alias ssh=mosh
+if command -v mosh >/dev/null; then
+	alias ssh=mosh
 fi
 
 [[ -f ~/.localrc ]] && source ~/.localrc
-
