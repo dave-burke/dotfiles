@@ -1,14 +1,11 @@
 # Lock after 15 minutes
 timeout 900 'swaylock -f'
 
-# Turn off displays after 30 minutes (doesn't resume correctly)
-# timeout 1800 'swaymsg "output * dpms off"'
+# Turn off displays after 30 minutes
+timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 
-# Go to sleep after 2 hours
-timeout 7200 'systemctl suspend'
-
-# Turn displays back on when activity resumes
-# resume 'swaymsg "output * dpms on"'
+# Go to sleep after 3 days
+timeout 259200 'systemctl suspend'
 
 # Lock immediately before suspend
 before-sleep 'swaylock -f'
