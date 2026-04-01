@@ -101,7 +101,9 @@
         "format-icons": {
             "activated": "",
             "deactivated": ""
-        }
+        },
+        // 5 hours max
+        "timeout": 300
     },
     "tray": {
         // "icon-size": 21,
