@@ -11,6 +11,11 @@ setopt HIST_NO_STORE
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt INC_APPEND_HISTORY
+
+# Case-insensitive cd and tab completion for directory names
+setopt nocaseglob
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 bindkey -v
 
 autoload -Uz compinit && compinit
@@ -28,7 +33,7 @@ function zkbd_file() {
 keyfile=$(zkbd_file)
 ret=$?
 if [[ ${ret} -ne 0 ]]; then
-    echo "Could not find zkbd file for '${TERM}-${VENDOR}-${OSTYPE}' or '${TERM}-${DISPLAY}'" 
+    echo "Could not find zkbd file for '${TERM}-${VENDOR}-${OSTYPE}' or '${TERM}-${DISPLAY}'"
     zkbd
     keyfile=$(zkbd_file)
     ret=$?
@@ -42,10 +47,10 @@ unfunction zkbd_file; unset keyfile ret
 
 [[ -n "${key[PageUp]}" ]] && bindkey "${key[PageUp]}" history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]] && bindkey "${key[PageDown]}" history-beginning-search-forward
- 
+
 #Set prompt
 PROMPT="%n@%M:%3~%# " RPROMPT="%? @ %T"
- 
+
 # Use direnv if available
 if command -v direnv > /dev/null; then
 	eval "$(direnv hook zsh)"
